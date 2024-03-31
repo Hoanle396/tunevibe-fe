@@ -21,7 +21,7 @@ export const MENU = [
 const Header = (props: Props) => {
   return (
     <div className="w-full h-24 border-b-[.1px] border-primary flex flex-1 items-center justify-center">
-      <div className="w-10/12 flex justify-between items-center">
+      <div className="container flex justify-between items-center">
         <Link href="/">
           <div className="uppercase text-5xl font-bold text-white">
             Tune<span className="text-accent">Vibe</span>
