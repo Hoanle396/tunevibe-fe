@@ -1,4 +1,5 @@
 ### NextJS-TUNEVIBE FRONTEND
+![image](https://github.com/Hoanle396/tunevibe-fe/assets/89791546/c36ef10b-bad5-4e06-9ad2-e6e7bcb012e6)
 
 ## Deployment
 
