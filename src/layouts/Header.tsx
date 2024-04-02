@@ -9,12 +9,12 @@ export const MENU = [
     path: "/",
   },
   {
-    name: "NFTs",
-    path: "/nfts",
+    name: "Market",
+    path: "/market-place",
   },
   {
-    name: "Mint",
-    path: "/mint",
+    name: "Creator",
+    path: "/creator",
   },
 ];
 
