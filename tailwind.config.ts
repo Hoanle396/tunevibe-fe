@@ -20,7 +20,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         // singerOverlay: "url()",
-        // newsletter: "url()",
+        music: "url(/assets/bg.svg)",
       },
       fontFamily: {
         alexBrush: ["var(--font-alexBrush)", "sans-serif"],
