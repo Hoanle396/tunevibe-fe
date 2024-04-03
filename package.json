@@ -15,6 +15,7 @@
     "react-dom": "^18",
     "react-parallax-mouse": "^2.1.0",
     "react-type-animation": "^3.2.0",
+    "react-visibility-sensor": "^5.1.1",
     "sass": "^1.72.0"
   },
   "devDependencies": {
