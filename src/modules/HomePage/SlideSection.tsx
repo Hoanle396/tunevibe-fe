@@ -48,7 +48,18 @@ const SlideSection: FCC = () => {
         <Swiper
           modules={[Autoplay, Navigation, Pagination]}
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={5}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            1000: {
+              slidesPerView: 2,
+            },
+            1480: {
+              slidesPerView: 3,
+            },
+          }}
           centeredSlides={true}
           navigation={true}
           loop

@@ -19,7 +19,7 @@ const config: Config = {
     },
     extend: {
       backgroundImage: {
-        gradient: "linear-gradient(180deg, #EFC233, transparent)",
+        gradient: "linear-gradient(330deg, #EFC233, transparent)",
         music: "url(/assets/bg.svg)",
       },
       fontFamily: {

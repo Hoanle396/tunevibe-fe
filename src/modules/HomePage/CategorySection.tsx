@@ -50,13 +50,24 @@ const CategorySection: FCC = () => {
       <div className="container relative mx-auto p-3 -skew-y-3 bg-[#f0d800] flex justify-center items-center lg:justify-star">
         <Swiper
           modules={[Autoplay, Navigation, Pagination]}
-          spaceBetween={10}
+          spaceBetween={1}
           slidesPerView={5}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            639: {
+              slidesPerView: 3,
+            },
+            1480: {
+              slidesPerView: 5,
+            },
+          }}
           centeredSlides={true}
           navigation={true}
           loop
           autoplay={{
-            delay: 3000,
+            delay: 2000,
             pauseOnMouseEnter: true,
             disableOnInteraction: true,
           }}

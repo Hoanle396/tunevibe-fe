@@ -23,8 +23,8 @@ const Header = (props: Props) => {
     <div className="w-full h-24 border-b-[.1px] border-primary flex flex-1 items-center justify-center">
       <div className="container flex justify-between items-center">
         <Link href="/">
-          <div className="uppercase text-5xl font-bold text-white">
-            Tune<span className="text-accent">Vibe</span>
+          <div className="text-5xl font-alexBrush font-bold text-white">
+            Tune<span className="text-[#F0D800]">Vibe</span>
           </div>
         </Link>
         <div className="flex justify-end items-center space-x-3">
