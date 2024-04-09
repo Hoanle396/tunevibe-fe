@@ -33,21 +33,22 @@ const IntroSection: FCC = () => {
               >
                 <p className="text-5xl font-bold text-white">
                   Some of The Most Famous
-                  <span className="text-yellow-400"> Artists </span>Of All
+                  <span className="text-yellow-400"> Artists </span>Of All Time
+                  in the
                   <span className="text-accent">
                     <TypeAnimation
                       sequence={[
-                        "Time in the Berlin",
+                        " Berlin",
                         3000,
-                        "Time in the Paris",
+                        " Paris",
                         3000,
-                        "Time in the Vietnam",
+                        " Vietnam",
                         3000,
-                        "Time in the Brazil",
+                        " Brazil",
                         3000,
-                        "Time in the World",
+                        " World",
                       ]}
-                      wrapper="div"
+                      wrapper="span"
                       speed={1}
                       deletionSpeed={1}
                       repeat={Infinity}
@@ -80,7 +81,7 @@ const IntroSection: FCC = () => {
           viewport={{ once: false, amount: 0.7 }}
           className="col-span-1 flex w-full"
         >
-          <div className="circle-blur absolute right-0 z-0 h-[412px] w-[412px] bg-[#4ee39d] opacity-[0.3] blur-[179.5px] before:backdrop-blur-[179.5px] md:h-[666px] md:w-[666px]"></div>
+          <div className="circle-blur absolute right-0 z-0 h-[412px] w-[412px] bg-gradient opacity-[0.6] blur-[179.5px] before:backdrop-blur-[179.5px] md:h-[666px] md:w-[666px]"></div>
           <div className="container mt-12 max-w-[1200px] lg:mt-0">
             <div className="flex w-full flex-col justify-center gap-16">
               <div className="mx-auto mt-6 w-fit text-center sm:mx-0 sm:mt-0 sm:w-full">

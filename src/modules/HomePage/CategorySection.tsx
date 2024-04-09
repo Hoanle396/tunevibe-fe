@@ -9,46 +9,49 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const data = [
   {
-    name: "Trending Music",
+    name: "Beats",
     icon: <CiStar />,
-    colorClass: "text-pink-600",
   },
   {
-    name: "Trending Music",
+    name: "ChillOut",
     icon: <CiStar />,
-    colorClass: "text-accent",
   },
   {
-    name: "Trending Music",
+    name: "AfroBeat",
     icon: <CiStar />,
-    colorClass: "text-yellow-300",
   },
   {
-    name: "Trending Music",
+    name: "Pop",
     icon: <CiStar />,
-    colorClass: "text-cyan-500",
   },
   {
-    name: "Trending Music",
+    name: "HipPop",
     icon: <CiStar />,
-    colorClass: "text-white",
+  },
+  {
+    name: "Deep House",
+    icon: <CiStar />,
+  },
+  {
+    name: "Jazz",
+    icon: <CiStar />,
   },
 ];
 
-const SlideSection: FCC = () => {
+const CategorySection: FCC = () => {
   return (
     <motion.section
-      variants={fadeIn("down", 0.4)}
+      variants={fadeIn("left", 0.4)}
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, amount: 0.7 }}
       className="section flex flex-col gap-4"
     >
-      <div className="container relative mx-auto flex justify-center items-center lg:justify-star">
+      <div className="container relative mx-auto p-3 -skew-y-3 bg-[#f0d800] flex justify-center items-center lg:justify-star">
         <Swiper
           modules={[Autoplay, Navigation, Pagination]}
-          spaceBetween={50}
-          slidesPerView={3}
+          spaceBetween={10}
+          slidesPerView={5}
           centeredSlides={true}
           navigation={true}
           loop
@@ -58,10 +61,10 @@ const SlideSection: FCC = () => {
             disableOnInteraction: true,
           }}
         >
-          {data.map(({ colorClass, icon, name }, i) => (
+          {data.map(({ icon, name }, i) => (
             <SwiperSlide key={i}>
               <div
-                className={`flex items-center justify-center gap-3 text-5xl font-alexBrush ${colorClass}`}
+                className={`flex items-center justify-center gap-3 text-4xl font-alexBrush text-primary`}
               >
                 {icon}
                 {name}
@@ -70,9 +73,8 @@ const SlideSection: FCC = () => {
           ))}
         </Swiper>
       </div>
-      <div className="container mx-auto bg-white h-1 w-full" />
     </motion.section>
   );
 };
 
-export default SlideSection;
+export default CategorySection;

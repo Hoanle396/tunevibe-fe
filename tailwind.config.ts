@@ -19,7 +19,7 @@ const config: Config = {
     },
     extend: {
       backgroundImage: {
-        // singerOverlay: "url()",
+        gradient: "linear-gradient(180deg, #EFC233, transparent)",
         music: "url(/assets/bg.svg)",
       },
       fontFamily: {
