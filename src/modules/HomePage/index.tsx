@@ -7,13 +7,13 @@ import SlideSection from "./SlideSection";
 
 export const Home = () => {
   return (
-    <>
+    <div>
       <HeroSection />
       <CategorySection />
       <AboutSection />
       <IntroSection />
       <SlideSection />
       <Download />
-    </>
+    </div>
   );
 };

@@ -11,6 +11,9 @@ export const MENU = [
   {
     name: "Market",
     path: "/market-place",
+  },{
+    name: "Music",
+    path: "/music",
   },
   {
     name: "Creator",
