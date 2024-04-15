@@ -42,7 +42,7 @@ const Sidebar: FCC = () => {
         <div className="h-full px-3 py-4 rounded-xl overflow-clip relative aside">
           <ul className="space-y-2 font-medium">
             {menuList.map((menu) => (
-              <li key={menu.href}>
+              <li key={menu.href} className="rounded-lg hover:bg-[#6493d0]/30">
                 <Link
                   href={menu.href}
                   className="flex items-center p-2 rounded-lg group"
@@ -56,6 +56,7 @@ const Sidebar: FCC = () => {
             ))}
           </ul>
         </div>
+        <div className="backdrop-bg" />
       </aside>
     </>
   );
