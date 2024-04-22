@@ -7,7 +7,7 @@ const useFetch = <T>() => {
 
     const sendRequest = useCallback(async (config: RequestConfig, applyData: (data: T) => void) => {
         setLoading(true);
-        setError(null);
+        setError("");
     
         try {
           const response = await fetch(
@@ -23,7 +23,7 @@ const useFetch = <T>() => {
     
           applyData(data)
         } catch (err) {
-          setError(err.message || "Something went wrong!");
+          setError("Something went wrong!");
         }
         setLoading(false);
     },[]);

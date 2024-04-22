@@ -38,7 +38,7 @@ const getPasswordStrength = (password: string) : PasswordStrength => {
     return strength
 }
 
-const usePasswordStrength = (password: string | null) => {
+const usePasswordStrength = (password?: string) => {
     return getPasswordStrength(password ? password : "")
 }
 

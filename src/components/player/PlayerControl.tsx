@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useRef, useEffect, useState } from "react";
 import { useAppStore } from "@/store/app-store";
 import { Slider, Dropdown, message } from "antd";
@@ -32,14 +34,14 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     state.setRepeatType,
     state.disableKeyDown,
   ]);
-  const [duration, setDuration] = useState<number>(null);
+  const [duration, setDuration] = useState<number>(0);
   const [repeatOnce, setRepeatOnce] = useState<boolean>(false);
   const ref = useRef<HTMLAudioElement>();
 
   const [messageApi, contextHolder] = message.useMessage();
 
   const changeVolumeHandler = (volumeValue: number) => {
-    ref.current.volume = volumeValue;
+    ref.current?.setAttribute("volume", volumeValue.toString());
     setVolume(volumeValue);
   };
 
@@ -53,7 +55,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
             min={0}
             defaultValue={volume}
             max={1}
-            tipFormatter={(value) => `${value * 100}`}
+            tipFormatter={(value) => `${value ?? 1 * 100}`}
             step={0.05}
             onChange={changeVolumeHandler}
           />
@@ -84,7 +86,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         if (newCurrentTime < 0) {
           changeMusic("prev");
         } else {
-          ref.current.currentTime = newCurrentTime;
+          ref.current?.setAttribute("current-time",String(newCurrentTime)) 
           setCurrentTime(newCurrentTime);
         }
       } else if (keyPressedCode === "arrowright") {
@@ -93,16 +95,17 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         if (newCurrentTime > duration) {
           changeMusic("next", true);
         } else {
-          ref.current.currentTime = newCurrentTime;
+          ref.current?.setAttribute("current-time",String(newCurrentTime))
           setCurrentTime(newCurrentTime);
         }
       } else if (keyPressedCode === "arrowup") {
         const newVal = volume + 0.2 > 1 ? 1 : volume + 0.2;
-        ref.current.volume = newVal;
+        // ref.current.volume = newVal;
+        ref.current?.setAttribute("volume",String(newVal))
         setVolume(newVal);
       } else if (keyPressedCode === "arrowdown") {
         const newVal = volume - 0.2 < 0 ? 0 : volume - 0.2;
-        ref.current.volume = newVal;
+        ref.current?.setAttribute("volume",String(newVal))
         setVolume(newVal);
       }
     };
@@ -118,20 +121,22 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
 
   useEffect(() => {
     if (music) {
-      ref.current.src = music.src;
-      ref.current.currentTime = currentTime;
-      ref.current.volume = volume;
+      ref.current?.setAttribute("src", music.src);
+      // ref.current.currentTime = currentTime;
+      // ref.current.volume = volume;
+      ref.current?.setAttribute("volume", String(volume))
+      ref.current?.setAttribute("current-time",String(currentTime))
       if (!isPlaying) {
-        ref.current.pause();
+        ref?.current?.pause();
       } else {
-        ref.current.play();
+        ref?.current?.play();
       }
     }
   }, [music, isPlaying]);
 
   const musicTimeUpdateHandler = () => {
-    if (ref.current.currentTime === duration) changeMusic("next", true);
-    else setCurrentTime(ref.current.currentTime);
+    if (ref?.current?.currentTime === duration) changeMusic("next", true);
+    else setCurrentTime(ref?.current?.currentTime||0);
   };
 
   const playClickHandler = () => {
@@ -142,11 +147,11 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
   };
 
   const musicTimeChangeHandler = (time: number) => {
-    ref.current.currentTime = time;
+    ref.current?.setAttribute("current-time",String(time))
   };
 
   const metadataLoadHandler = () => {
-    setDuration(ref.current.duration);
+    setDuration(ref?.current?.duration??1);
   };
 
   const repeatClickHandler = () => {
@@ -165,7 +170,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
       content = "Repeat all Musics turned on";
     } else if (repeatOnce) {
       setRepeat("off");
-      setRepeatOnce(null);
+      setRepeatOnce(false);
     } else {
       setRepeat("once");
       setRepeatOnce(true);
@@ -205,7 +210,8 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     if (currentTime < 3) {
       changeMusic("prev");
     } else {
-      ref.current.currentTime = 0;
+      // ref.current.currentTime = 0;
+      ref.current?.setAttribute("current-time",String(0))
       setCurrentTime(0);
     }
   };

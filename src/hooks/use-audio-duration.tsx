@@ -4,7 +4,7 @@ import { useState } from "react";
 import useFormatSecond from "@/hooks/use-format-second";
 
 const useAudioDuration = (audioSrc: string) => {
-    const [durationSeconds, setDurationSeconds] = useState<number>(null)
+    const [durationSeconds, setDurationSeconds] = useState<number>(0)
     const formatedDuration = useFormatSecond(durationSeconds);
 
     const metadataLoadHandler = (e: React.SyntheticEvent<HTMLAudioElement>) => {

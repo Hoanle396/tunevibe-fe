@@ -7,7 +7,6 @@ import MainButton from '../ui/button/MainButton';
 import HeaderMenu from './HeaderMenu';
 import HeaderSearch from './HeaderSearch';
 import HeaderAccount from './HeaderAccount';
-import ThemeToggler from '../theme/ThemeToggler';
 
 import styles from './Header.module.scss'
 import Icon from '../ui/Icon';
@@ -30,7 +29,6 @@ const Header = () => {
         <HeaderMenu />
         <HeaderSearch />
         <div className={styles.box}>
-            <ThemeToggler />
             {
                 isLoggedIn
                 ? <>

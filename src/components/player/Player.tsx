@@ -15,7 +15,7 @@ const Player = () => {
             imageAlt={music ? music.name : "not found"}
             name={music ? music.name : "Not found any music selected"}
             artist={music ? music.artist : "No One..."}
-            musicId={music ? music.id : null}
+            musicId={music ? music.id : undefined}
         />
     </div>
 }

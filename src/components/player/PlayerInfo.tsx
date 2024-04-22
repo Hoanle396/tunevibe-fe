@@ -31,7 +31,7 @@ const PlayerInfo = ({
 
     const onClick: MenuProps['onClick'] = ({ key }) => {
         const nextMusic = playList.find(music => music.id === Number(key))
-        setMusic(nextMusic)
+        nextMusic && setMusic(nextMusic)
     };
 
     if ( playList.length ) {

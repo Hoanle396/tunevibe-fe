@@ -27,7 +27,7 @@ interface AppStoreState {
     shuffleIndex: number[],
     disableKeyDown: boolean,
     setPlayListModal: (type: boolean) => void,
-    setMusicClicked: (music: Music) => void,
+    setMusicClicked: (music?: Music) => void,
     setDisableKeyDown: (disabled: boolean) => void,
     setInitialApp: (payload: AppLocalStorage) => void,
     // firstOpen: boolean,

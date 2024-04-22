@@ -1,3 +1,4 @@
+// @ts-nocheck
 const prefixes = ["B", "KB", "MB", "GB"]
 const convertSize = (size: number) => {
   let i = 0

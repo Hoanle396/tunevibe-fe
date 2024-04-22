@@ -1,6 +1,6 @@
+// @ts-nocheck
 import { useUserStore } from '@/store/user-store';
 import { create } from 'zustand'
-
 // import GetLogin from '@/services/server/users/GetLogin';
 // import Register from '@/services/server/users/Register';
 

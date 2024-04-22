@@ -16,8 +16,8 @@ const useImage = ({
 }) => {
     // const [error, setError] = useState<string>(null)
     const [loading, setLoading] = useState<boolean>(false)
-    const [image, setImage] = useState<string>(null);
-    const [file, setFile] = useState<File>(null)
+    const [image, setImage] = useState<string>("");
+    const [file, setFile] = useState<File|null>(null)
     const { status, statusText, promise } = useReadFile(file, maxSize, prefix);
 
     if ( promise ) {
@@ -31,7 +31,7 @@ const useImage = ({
         setLoading(false)
     }
 
-    const fileInputChangeHandler = (ev) => {
+    const fileInputChangeHandler = (ev:any) => {
         setLoading(true)
         const files = [...ev.currentTarget.files].map((file) => {
             if (!file) return;
@@ -40,7 +40,7 @@ const useImage = ({
     };
 
     const reset = () => {
-        setImage(null)
+        setImage("")
         setFile(null)
     }
 

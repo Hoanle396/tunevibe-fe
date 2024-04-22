@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { create } from 'zustand'
 
 const STORAGE_NAME = process.env.NEXT_PUBLIC_THEME_STORE

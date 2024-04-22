@@ -17,7 +17,7 @@ const PlayListProvider = () => {
 
   const hideModal = () => {
     setPlaylistModalOpen(false);
-    setMusicClicked(null);
+    setMusicClicked(undefined);
   };
 
   return (
