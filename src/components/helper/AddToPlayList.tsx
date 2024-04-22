@@ -5,6 +5,7 @@ import { MessageArgsProps, message } from "antd";
 import { useAppStore } from "@/store/app-store";
 
 import Icon from "../ui/Icon";
+import { MdPlaylistAdd } from "react-icons/md";
 
 const AddToPlayList = ({
   musicId,
@@ -47,7 +48,7 @@ const AddToPlayList = ({
         style={{ ...style }}
         onClick={addToPlayListClickHandler}
       >
-        <Icon icon="plus" />
+        <MdPlaylistAdd />
       </button>
       {contextHolder}
     </>

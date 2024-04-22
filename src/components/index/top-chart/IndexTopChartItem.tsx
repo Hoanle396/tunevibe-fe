@@ -9,6 +9,8 @@ import Icon from "@/components/ui/Icon";
 
 import styles from "./IndexTopChartItem.module.scss";
 import React from "react";
+import { CiCircleMinus } from "react-icons/ci";
+import { MdPauseCircle, MdPlayCircle } from "react-icons/md";
 
 const IndexTopChartItem = ({
   musicData,
@@ -29,7 +31,9 @@ const IndexTopChartItem = ({
     state.setPlayingState,
   ]);
 
-  const { durationSeconds, formatedDuration, output } = useAudioDuration(musicData.src)
+  const { durationSeconds, formatedDuration, output } = useAudioDuration(
+    musicData.src
+  );
   const number = index < 10 ? `0${index}` : `${index}`;
   const currentMusic = music && music.id === musicData.id;
 
@@ -46,8 +50,8 @@ const IndexTopChartItem = ({
   };
 
   const removeFromPlaylistClickHandler = () => {
-    onMusicClick("remove", musicData)
-  }
+    onMusicClick("remove", musicData);
+  };
 
   return (
     <li style={{ listStyle: "none" }}>
@@ -77,7 +81,11 @@ const IndexTopChartItem = ({
           }`}
           onClick={musicPlayClickHandler}
         >
-          <Icon icon={currentMusic && isPlaying ? "pause-fill" : "play"} />
+          {currentMusic && isPlaying ? (
+            <MdPauseCircle className={styles.icon} />
+          ) : (
+            <MdPlayCircle className={styles.icon} />
+          )}
         </button>
 
         <FavoriteProvider
@@ -91,8 +99,11 @@ const IndexTopChartItem = ({
             className={`${styles.button} ${styles.playlist}`}
           />
         ) : (
-          <button onClick={removeFromPlaylistClickHandler} className={`btn ${styles.playlist} ${styles.remove}`}>
-            <Icon icon="minus" />
+          <button
+            onClick={removeFromPlaylistClickHandler}
+            className={`btn ${styles.playlist} ${styles.remove}`}
+          >
+            <CiCircleMinus />
           </button>
         )}
       </div>

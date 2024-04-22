@@ -1,11 +1,18 @@
-import { useRef, useEffect, useState } from "react";
-import { useAppStore } from "@/store/app-store";
-import { Slider, Dropdown, message } from "antd";
-import type { MenuProps } from "antd";
 import useFormatSecond from "@/hooks/use-format-second";
+import { useAppStore } from "@/store/app-store";
+import type { MenuProps } from "antd";
+import { Dropdown, Slider, message } from "antd";
+import { useEffect, useRef, useState } from "react";
 
-import Icon from "../ui/Icon";
-
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { BsRepeat, BsRepeat1 } from "react-icons/bs";
+import {
+  CiShuffle,
+  CiVolume,
+  CiVolumeHigh,
+  CiVolumeMute,
+} from "react-icons/ci";
+import { MdPauseCircle, MdPlayCircle } from "react-icons/md";
 import styles from "./PlayerControl.module.scss";
 
 const PlayerControl = ({ music }: { music: Music | null }) => {
@@ -39,8 +46,8 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const changeVolumeHandler = (volumeValue: number) => {
-    ref.current.volume = volumeValue;
     setVolume(volumeValue);
+    ref.current.volume = volumeValue;
   };
 
   const menuItems: MenuProps["items"] = [
@@ -53,7 +60,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
             min={0}
             defaultValue={volume}
             max={1}
-            tipFormatter={(value) => `${value * 100}`}
+            tipFormatter={(value) => `${value ?? 1 * 100}`}
             step={0.05}
             onChange={changeVolumeHandler}
           />
@@ -216,36 +223,45 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     <div className={styles["control-wrapper"]}>
       <div className={styles.control}>
         <div className={styles.button} onClick={repeatClickHandler}>
-          <Icon
-            className={`${styles.icon} ${
-              repeatType !== "shuffle" && repeatType !== "off"
-                ? styles.active
-                : ""
-            }`}
-            icon={repeatOnce !== null && repeatOnce ? "repeat-once" : "repeat"}
-          />
+          {repeatOnce !== null && repeatOnce ? (
+            <BsRepeat1
+              className={`${styles.icon} ${
+                repeatType !== "shuffle" && repeatType !== "off"
+                  ? styles.active
+                  : ""
+              }`}
+            />
+          ) : (
+            <BsRepeat
+              className={`${styles.icon} ${
+                repeatType !== "shuffle" && repeatType !== "off"
+                  ? styles.active
+                  : ""
+              }`}
+            />
+          )}
         </div>
         <div className={styles.button} onClick={previousMusicClickHandler}>
-          <Icon className={styles.icon} icon="previous-fill" />
+          <BiLeftArrow className={styles.icon} />
         </div>
         <div
           className={`${styles.button} ${styles.main}`}
           onClick={playClickHandler}
         >
-          <Icon
-            className={styles.icon}
-            icon={isPlaying ? "pause-fill" : "play-fill"}
-          />
+          {!isPlaying ? (
+            <MdPlayCircle className={styles.icon} />
+          ) : (
+            <MdPauseCircle className={styles.icon} />
+          )}
         </div>
         <div className={styles.button} onClick={nextMusicClickHandler}>
-          <Icon className={styles.icon} icon="next-fill" />
+          <BiRightArrow className={styles.icon} />
         </div>
         <div className={styles.button} onClick={shuffleRepeatClickHandler}>
-          <Icon
+          <CiShuffle
             className={`${styles.icon} ${
               repeatType === "shuffle" ? styles.active : ""
             }`}
-            icon="shuffle-arrows"
           />
         </div>
       </div>
@@ -277,16 +293,13 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
 
           <Dropdown placement="top" menu={{ items: menuItems }}>
             <span className={styles.button}>
-              <Icon
-                className={styles.icon}
-                icon={
-                  volume === 0
-                    ? "volume-mute-fill"
-                    : volume <= 0.65
-                    ? "volume-1-fill"
-                    : "volume-max-fill"
-                }
-              />
+              {volume === 0 ? (
+                <CiVolumeMute className={styles.icon} />
+              ) : volume <= 0.65 ? (
+                <CiVolume className={styles.icon} />
+              ) : (
+                <CiVolumeHigh className={styles.icon} />
+              )}
             </span>
           </Dropdown>
         </div>
