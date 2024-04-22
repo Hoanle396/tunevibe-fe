@@ -1,3 +1,4 @@
+import Footer from "@/layouts/Footer";
 import AboutSection from "./AboutSection";
 import CategorySection from "./CategorySection";
 import Download from "./DownloadSection";
@@ -14,6 +15,7 @@ export const Home = () => {
       <IntroSection />
       <SlideSection />
       <Download />
+      <Footer />
     </div>
   );
 };

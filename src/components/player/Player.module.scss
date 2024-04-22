@@ -1,0 +1,41 @@
+.player {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    width: calc(100% - 276px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+    padding: 10px 25px 15px 25px;
+    border-radius: 12px;
+    // background-color: #5773ff;
+    z-index: 999;
+
+    transition: all 0.5s ease-in-out;
+  overflow: clip;
+  // height: 100%;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #6493d0;
+  background: none !important;
+  // padding: 50px 18px;
+  &::before {
+    content: '';
+    background: linear-gradient(180deg, #000e1f 0%, #0c2a50 100%);
+    opacity: 0.62;
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+  }
+
+    .icon {
+        font-size: 22px;
+        color: var(--title-color);
+        cursor: pointer;
+        transition: var(--transition);
+    
+        &:hover {
+            color: var(--sub-title-color);
+        }
+    }
+}
