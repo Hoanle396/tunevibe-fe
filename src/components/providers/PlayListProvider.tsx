@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Modal } from "antd";
 
 import { useUserStore } from "@/store/user-store";

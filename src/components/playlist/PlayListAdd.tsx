@@ -125,7 +125,13 @@ const PlayListAdd = ({
               PlayList Avatar:
             </label>
             <label htmlFor="playlistAvatar">
-              {imageLoading ? <div className={styles.img}><Spin /></div> : <Avatar {...avatarProps}>{!image ? "PA" : ""}</Avatar>}
+              {imageLoading ? (
+                <div className={styles.img}>
+                  <Spin />
+                </div>
+              ) : (
+                <Avatar {...avatarProps}>{!image ? "PA" : ""}</Avatar>
+              )}
             </label>
             {output}
           </div>

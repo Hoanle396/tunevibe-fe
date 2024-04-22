@@ -1,18 +1,18 @@
 .menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .link {
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    transition: var(--transition);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  transition: var(--transition);
 
-    &.active,
-    &:hover {
-        color: var(--primary-color);
-    }
+  &.active,
+  &:hover {
+    color: var(--primary-color);
+  }
 }

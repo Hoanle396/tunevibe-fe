@@ -1,6 +1,6 @@
 .loading {
   position: relative;
-  
+
   &:after {
     content: "";
     position: absolute;
@@ -15,34 +15,48 @@
     border-right-color: transparent;
     border-top-color: transparent;
     animation: spinAround 850ms infinite linear;
-  } /* loading after */
-  
-} /* loading */
+  }
+
+  /* loading after */
+
+}
+
+/* loading */
 
 .loading-primary {
   @extend .loading;
+
   &:after {
     border-color: $primary-color;
     border-right-color: transparent;
     border-top-color: transparent;
-  } /* loading primary after */
-} /* loading primary */
+  }
+
+  /* loading primary after */
+}
+
+/* loading primary */
 
 .loading-secondary {
   @extend .loading;
+
   &:after {
     border-color: $secondary-color;
     border-right-color: transparent;
     border-top-color: transparent;
-  } /* loading secondary after */
-} /* loading primary */
+  }
+
+  /* loading secondary after */
+}
+
+/* loading primary */
 
 .overlay-loading {
   //background-color: $primary-color !important;
   position: relative;
   overflow: hidden !important;
   pointer-events: none !important;
-  
+
   &:before {
     content: "" !important;
     box-sizing: border-box;
@@ -57,8 +71,10 @@
     transform: none !important;
     opacity: 1 !important;
     border-radius: 0 !important;
-  } /* overlay loading before */
-  
+  }
+
+  /* overlay loading before */
+
   &:after {
     content: "";
     box-sizing: border-box;
@@ -74,8 +90,12 @@
     border-top-color: inherit;
     animation: spinAround 0.6s linear infinite;
     z-index: 2;
-  } /* overlay loading after */
-} /* overlay loading */
+  }
+
+  /* overlay loading after */
+}
+
+/* overlay loading */
 
 .overlay-loading-secondary {
   @extend .overlay-loading;
@@ -90,6 +110,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
   }

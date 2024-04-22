@@ -9,7 +9,6 @@ import PlayListItem from "./PlayListItem";
 import PlayListAdd from "./PlayListAdd";
 import styles from "./PlayList.module.scss";
 
-
 const PlayList = () => {
   const [messageApi, contextHolder] = message.useMessage();
 

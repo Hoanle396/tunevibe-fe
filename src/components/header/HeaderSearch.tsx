@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 
-import Icon from "../ui/Icon";
 
+import { FaSearch } from "react-icons/fa";
 import styles from "./HeaderSearch.module.scss";
 
 const HeaderSearch = () => {
@@ -9,7 +9,7 @@ const HeaderSearch = () => {
 
   return (
     <div className={styles["search-wrapper"]}>
-      <Icon className={styles.icon} icon="search" />
+      <FaSearch className={styles.icon} />
       <form onSubmit={searchSubmitHandler}>
         <input
           className={styles.search}

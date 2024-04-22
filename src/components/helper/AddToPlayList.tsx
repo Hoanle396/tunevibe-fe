@@ -28,13 +28,11 @@ const AddToPlayList = ({
     // setLoading(true);
     // const musicRes = await GetMusic(musicId);
     // setLoading(false);
-
     // if (musicRes.data) {
     //   setMusicClicked(musicRes.data);
     //   setPlayListModal(true);
     //   return;
     // }
-
     // messageApi.open({
     //   type: "error",
     //   content: musicRes.error,

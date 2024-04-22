@@ -21,7 +21,11 @@ const PlayList = ({
   ) : (
     <div style={{ textAlign: "center" }}>
       <NotFound>Playlist</NotFound>
-      <MainButton type="primary" style={{ marginTop: 10 }} onClick={onButtonClick}>
+      <MainButton
+        type="primary"
+        style={{ marginTop: 10 }}
+        onClick={onButtonClick}
+      >
         <Link href="/playlists">Add Playlist</Link>
       </MainButton>
     </div>

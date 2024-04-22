@@ -1,9 +1,5 @@
 import React, { CSSProperties } from "react";
-import {
-  DropResult,
-  DragDropContext,
-  Droppable,
-} from "react-beautiful-dnd";
+import { DropResult, DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const DraggableContext = ({
   onDragEnd,
@@ -30,9 +26,9 @@ const DraggableContext = ({
             }`}
             ref={provided.innerRef}
             {...provided.droppableProps}
-            style={{...style}}
+            style={{ ...style }}
           >
-           {children} 
+            {children}
           </div>
         )}
       </Droppable>
