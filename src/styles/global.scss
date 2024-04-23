@@ -42,6 +42,15 @@
   --main-radius: #{$main-radius};
 
   --transition: #{$transition};
+
+  --shadow-dark-color: #d3dae7;
+  --box-shadow: 1rem 1rem 1rem var(--shadow-dark-color),
+  -1rem -1rem 1rem var(--shadow-light-color);
+  --bg-shadow-dark-color: #d3dae745;
+  --icons-color: #4c5773;
+  --main-bg-color: #ecf0f3;
+  --icons-bg-color: #e2e6e9;
+  
 }
 
 :has(main.light):root {

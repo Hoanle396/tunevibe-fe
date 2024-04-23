@@ -5,6 +5,7 @@ import Download from "./DownloadSection";
 import HeroSection from "./HeroSection";
 import IntroSection from "./IntroSection";
 import SlideSection from "./SlideSection";
+import AudioLive from "@/components/AudioLive/AudioLive";
 
 export const Home = () => {
   return (
@@ -13,6 +14,7 @@ export const Home = () => {
       <CategorySection />
       <AboutSection />
       <IntroSection />
+      <AudioLive/>
       <SlideSection />
       <Download />
       <Footer />
