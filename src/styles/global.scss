@@ -44,13 +44,15 @@
   --transition: #{$transition};
 
   --shadow-dark-color: #d3dae7;
+  --shadow-light-color: #fff;
   --box-shadow: 1rem 1rem 1rem var(--shadow-dark-color),
   -1rem -1rem 1rem var(--shadow-light-color);
-  --bg-shadow-dark-color: #d3dae745;
-  --icons-color: #4c5773;
+  --bg-shadow-dark-color: #d3dae754;
+  --icons-color: #4c577341;
   --main-bg-color: #ecf0f3;
   --icons-bg-color: #e2e6e9;
-  
+  --box-shadow-2: 0rem 0rem 0rem var(--shadow-dark-color),
+  -.3rem -.3rem 1rem var(--shadow-dark-color)
 }
 
 :has(main.light):root {

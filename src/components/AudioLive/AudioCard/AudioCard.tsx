@@ -44,8 +44,8 @@ const AudioCard = () => {
 
           <div className={Style.audioCard_box_time}>
             <div className={Style.audioCard_box_like_time_remaing}>
-              <small>Reaming time</small>
-              <h5>3h : 15m :20s</h5>
+              <small className="text-gray-600">Reaming time</small>
+              <h5 className="text-gray-600">3h : 15m :20s</h5>
             </div>
           </div>
         </div>
@@ -70,16 +70,16 @@ const AudioCard = () => {
 
         <div className={Style.audioCard_box_details}>
           <div className={Style.audioCard_box_details_info}>
-            <h4>NFT music #1123</h4>
+            <h4 className="text-gray-600">NFT music #1123</h4>
             <div className={Style.audioCard_box_details_info_price}>
-              <small>Price</small>
-              <p>$3,221.33</p>
+              <small className="text-gray-600">Price</small>
+              <p className="text-gray-600">$3,221.33</p>
             </div>
           </div>
 
           <div className={Style.audioCard_box_details_stock}>
             {/* <LikeProfile /> */}
-            <small>24 in stock</small>
+            <small className="text-gray-600">24 in stock</small>
           </div>
         </div>
 
@@ -87,8 +87,9 @@ const AudioCard = () => {
           <Image
             src={"/images/creatorbackground-10.jpg"}
             alt="background"
-            width={500}
-            height={500}
+            layout="fill"
+            // width={1000}
+            // height={1000}
           />
         </div>
       </div>
