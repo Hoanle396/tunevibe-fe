@@ -2,6 +2,8 @@
 
 import Index from "@/components/index/Index";
 const Music = ({}) => {
+  // const { loading, error, data } = useQuery(LOGIN_QUERY);
+
   return (
     <Index
       trends={[

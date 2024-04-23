@@ -58,7 +58,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
           <Slider
             vertical
             min={0}
-            defaultValue={volume}
+            value={volume}
             max={1}
             tipFormatter={(value) => `${value ?? 1 * 100}`}
             step={0.05}
@@ -134,7 +134,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         ref.current.play();
       }
     }
-  }, [music, isPlaying]);
+  }, [music, isPlaying, volume]);
 
   const musicTimeUpdateHandler = () => {
     if (ref.current.currentTime === duration) changeMusic("next", true);

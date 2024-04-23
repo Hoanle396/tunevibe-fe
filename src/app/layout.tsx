@@ -1,6 +1,7 @@
 "use client";
-import Footer from "@/layouts/Footer";
+import { client } from "@/@apollo/client/main";
 import Header from "@/layouts/Header";
+import { ApolloProvider } from "@apollo/client";
 import { Alex_Brush, Montserrat } from "next/font/google";
 import "../styles/global.scss";
 
@@ -23,12 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${alex_Brush.variable} ${montserrat.variable} overflow-x-hidden relative`}
-      >
-        <Header />
-        {children}
-      </body>
+      <ApolloProvider client={client}>
+        <body
+          className={`${alex_Brush.variable} ${montserrat.variable} overflow-x-hidden relative`}
+        >
+          <Header />
+          {children}
+        </body>
+      </ApolloProvider>
     </html>
   );
 }

@@ -9,7 +9,7 @@ const Player = () => {
   const music = useAppStore((state) => state.currentMusic);
 
   return (
-    <div className={styles.player}>
+    <div className={`w-auto sm:w-[calc(100%-276px)] left-2 sm:left-auto ${styles.player} `}>
       <PlayerControl music={music} />
       <PlayerInfo
         image={music ? music.avatar : "/vercel.svg"}
