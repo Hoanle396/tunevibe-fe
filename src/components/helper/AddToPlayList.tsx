@@ -1,10 +1,9 @@
 "use client";
+import { message } from "antd";
 import { CSSProperties, useState } from "react";
-import { MessageArgsProps, message } from "antd";
 
 import { useAppStore } from "@/store/app-store";
 
-import Icon from "../ui/Icon";
 import { MdPlaylistAdd } from "react-icons/md";
 
 const AddToPlayList = ({

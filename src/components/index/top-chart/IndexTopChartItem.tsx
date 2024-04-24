@@ -5,7 +5,6 @@ import { useAppStore } from "@/store/app-store";
 import useAudioDuration from "@/hooks/use-audio-duration";
 import FavoriteProvider from "@/components/providers/FavoriteProvider";
 import AddToPlayList from "@/components/helper/AddToPlayList";
-import Icon from "@/components/ui/Icon";
 
 import styles from "./IndexTopChartItem.module.scss";
 import React from "react";

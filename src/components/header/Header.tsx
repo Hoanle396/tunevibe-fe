@@ -9,7 +9,7 @@ import HeaderSearch from "./HeaderSearch";
 import HeaderAccount from "./HeaderAccount";
 
 import styles from "./Header.module.scss";
-import Icon from "../ui/Icon";
+import { BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const [token, logout] = useAuthStore((state) => [state.token, state.logout]);
@@ -33,7 +33,7 @@ const Header = () => {
           <>
             <HeaderAccount />
             <MainButton type="primary" onClick={logoutClickHandler} circle>
-              <Icon className={styles.icon} icon="logout" />
+              <BiLogOut className={styles.icon} />
             </MainButton>
           </>
         ) : (

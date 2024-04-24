@@ -39,15 +39,15 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     state.setRepeatType,
     state.disableKeyDown,
   ]);
-  const [duration, setDuration] = useState<number>(null);
+  const [duration, setDuration] = useState<number>(0);
   const [repeatOnce, setRepeatOnce] = useState<boolean>(false);
-  const ref = useRef<HTMLAudioElement>();
+  const ref = useRef<HTMLAudioElement>(null);
 
   const [messageApi, contextHolder] = message.useMessage();
 
   const changeVolumeHandler = (volumeValue: number) => {
     setVolume(volumeValue);
-    ref.current.volume = volumeValue;
+    if (ref.current) ref.current.volume = volumeValue;
   };
 
   const menuItems: MenuProps["items"] = [
@@ -91,7 +91,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         if (newCurrentTime < 0) {
           changeMusic("prev");
         } else {
-          ref.current.currentTime = newCurrentTime;
+          if (ref.current) ref.current.currentTime = newCurrentTime;
           setCurrentTime(newCurrentTime);
         }
       } else if (keyPressedCode === "arrowright") {
@@ -100,16 +100,16 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         if (newCurrentTime > duration) {
           changeMusic("next", true);
         } else {
-          ref.current.currentTime = newCurrentTime;
+          if (ref.current) ref.current.currentTime = newCurrentTime;
           setCurrentTime(newCurrentTime);
         }
       } else if (keyPressedCode === "arrowup") {
         const newVal = volume + 0.2 > 1 ? 1 : volume + 0.2;
-        ref.current.volume = newVal;
+        if (ref.current) ref.current.volume = newVal;
         setVolume(newVal);
       } else if (keyPressedCode === "arrowdown") {
         const newVal = volume - 0.2 < 0 ? 0 : volume - 0.2;
-        ref.current.volume = newVal;
+        if (ref.current) ref.current.volume = newVal;
         setVolume(newVal);
       }
     };
@@ -125,20 +125,24 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
 
   useEffect(() => {
     if (music) {
-      ref.current.src = music.src;
-      ref.current.currentTime = currentTime;
-      ref.current.volume = volume;
-      if (!isPlaying) {
-        ref.current.pause();
-      } else {
-        ref.current.play();
+      if (ref.current) {
+        ref.current.src = music.src;
+        ref.current.currentTime = currentTime;
+        ref.current.volume = volume;
+
+        if (!isPlaying) {
+          ref.current.pause();
+        } else {
+          ref.current.play();
+        }
       }
     }
   }, [music, isPlaying, volume]);
 
   const musicTimeUpdateHandler = () => {
-    if (ref.current.currentTime === duration) changeMusic("next", true);
-    else setCurrentTime(ref.current.currentTime);
+    if (ref.current && ref.current.currentTime === duration)
+      changeMusic("next", true);
+    else setCurrentTime(ref.current ? ref.current.currentTime : 0);
   };
 
   const playClickHandler = () => {
@@ -149,11 +153,11 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
   };
 
   const musicTimeChangeHandler = (time: number) => {
-    ref.current.currentTime = time;
+    if (ref.current) ref.current.currentTime = time;
   };
 
   const metadataLoadHandler = () => {
-    setDuration(ref.current.duration);
+    if (ref.current) setDuration(ref.current.duration);
   };
 
   const repeatClickHandler = () => {
@@ -172,7 +176,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
       content = "Repeat all Musics turned on";
     } else if (repeatOnce) {
       setRepeat("off");
-      setRepeatOnce(null);
+      setRepeatOnce(false);
     } else {
       setRepeat("once");
       setRepeatOnce(true);
@@ -212,7 +216,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     if (currentTime < 3) {
       changeMusic("prev");
     } else {
-      ref.current.currentTime = 0;
+      if (ref.current) ref.current.currentTime = 0;
       setCurrentTime(0);
     }
   };

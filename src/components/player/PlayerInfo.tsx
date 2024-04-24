@@ -6,7 +6,6 @@ import { useAppStore } from "@/store/app-store";
 
 import FavoriteProvider from "@/components/providers/FavoriteProvider";
 import PlayerInfoPlayListItem from "./PlayerInfoPlayListItem";
-import Icon from "../ui/Icon";
 import NotFound from "../ui/not-found/NotFound";
 
 import styles from "./PlayerInfo.module.scss";

@@ -8,8 +8,9 @@ import { useAppStore } from "@/store/app-store";
 import { useUserStore } from "@/store/user-store";
 import { formatPlaylistTitle } from "@/utils";
 
-import Icon from "../ui/Icon";
 import styles from "./PlayListItem.module.scss";
+import { FaTrash } from "react-icons/fa";
+import { BsPauseFill, BsPlay } from "react-icons/bs";
 
 const PlayListItem = ({
   playlistData,
@@ -108,11 +109,11 @@ const PlayListItem = ({
           className={`btn ${styles.button} ${styles.play}`}
           onClick={playlistClickHandler}
         >
-          <Icon
-            icon={
-              isPlaying && playlistData.title === id ? "pause-fill" : "play"
-            }
-          />
+          {isPlaying && playlistData.title === id ? (
+            <BsPauseFill />
+          ) : (
+            <BsPlay />
+          )}
         </button>
       )}
       <Popconfirm
@@ -127,7 +128,7 @@ const PlayListItem = ({
           className={`btn ${styles.button} ${styles.delete}`}
           onClick={showPopConfirm}
         >
-          <Icon icon="trash" />
+          <FaTrash />
         </button>
       </Popconfirm>
     </li>
