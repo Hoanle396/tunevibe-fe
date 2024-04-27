@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import { ConnectButton } from "@/components/Button/ConnectButton";
 import Link from "next/link";
 
 type Props = {};
@@ -11,7 +12,8 @@ export const MENU = [
   {
     name: "Market",
     path: "/market-place",
-  },{
+  },
+  {
     name: "Music",
     path: "/music",
   },
@@ -43,7 +45,7 @@ const Header = (props: Props) => {
               </div>
             </Link>
           ))}
-          <Button>CONNECT  WALLET</Button>
+          <ConnectButton/>
         </div>
       </div>
     </div>
