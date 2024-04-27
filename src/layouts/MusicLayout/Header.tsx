@@ -1,7 +1,6 @@
-import React from "react";
-import HeaderSearch from "./HeaderSearch";
+import { ConnectButton } from "@/components/Button/ConnectButton";
 import Link from "next/link";
-import Button from "@/components/Button";
+import HeaderSearch from "./HeaderSearch";
 
 type Props = {};
 
@@ -15,7 +14,7 @@ const MusicHeader = (props: Props) => {
           </div>
         </Link>
         <HeaderSearch />
-        <Button>CONNECT WALLET</Button>
+        <ConnectButton/>
       </div>
     </div>
   );

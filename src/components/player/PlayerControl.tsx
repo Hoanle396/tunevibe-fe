@@ -121,6 +121,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     return () => {
       document.removeEventListener("keydown", handler);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying, currentTime, volume, disableKeydown]);
 
   useEffect(() => {
@@ -137,6 +138,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         }
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [music, isPlaying, volume]);
 
   const musicTimeUpdateHandler = () => {

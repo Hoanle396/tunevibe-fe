@@ -1,25 +1,23 @@
-import { cutString } from "@/libs/function";
-import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers5/react";
+import { useEthers } from "@usedapp/core";
 import Button from ".";
 import Avatar from "../Avatar";
+import { cutString } from "@/libs/function";
+import { useWeb3Modal } from "@web3modal/ethers5/react";
 
 export const ConnectButton = () => {
-  const { address, isConnected } = useWeb3ModalAccount();
-  const { open } = useWeb3Modal();
-  if (isConnected) {
+  const { account, deactivate, activateBrowserWallet } = useEthers();
+
+  if (account) {
     return (
-      <Button onClick={() => open()} className="flex items-center gap-2">
-        <Avatar
-          username={address ?? ""}
-          className="w-6 h-6 border rounded-full"
-        />
-        {cutString(address)}
+      <Button onClick={() => deactivate()} className="flex items-center gap-2">
+        <Avatar username={account} className="w-6 h-6 border rounded-full" />
+        {cutString(account)}
       </Button>
     );
-  }
-  return (
-    <Button onClick={() => open()} className="uppercase">
-      Connect Wallet
-    </Button>
-  );
+  } else
+    return (
+      <Button onClick={() => activateBrowserWallet()} className="uppercase">
+        Connect Wallet
+      </Button>
+    );
 };

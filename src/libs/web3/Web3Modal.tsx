@@ -47,5 +47,5 @@ createWeb3Modal({
 });
 
 export const Web3Modal: FCC = ({ children }) => {
-  return children;
+  return <div>{children}</div>;
 };

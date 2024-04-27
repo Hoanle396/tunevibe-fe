@@ -5,7 +5,6 @@ import Web3Provider from "@/libs/web3/Web3Provider";
 import { ApolloProvider } from "@apollo/client";
 import { Alex_Brush, Montserrat } from "next/font/google";
 import "../styles/global.scss";
-import { Web3Modal } from "@/libs/web3/Web3Modal";
 
 const alex_Brush = Alex_Brush({
   subsets: ["latin"],
@@ -28,14 +27,12 @@ export default function RootLayout({
     <html lang="en">
       <ApolloProvider client={client}>
         <Web3Provider>
-          <Web3Modal>
           <body
             className={`${alex_Brush.variable} ${montserrat.variable} overflow-x-hidden relative`}
           >
             <Header />
             {children}
           </body>
-          </Web3Modal>
         </Web3Provider>
       </ApolloProvider>
     </html>
