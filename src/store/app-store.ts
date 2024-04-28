@@ -19,9 +19,9 @@ const shuffleSortIndex = <T>(arr: T[]): number[] => {
 
 const changeAppLocalStorage = (payload: AppLocalStoragePayload) => {
   if (typeof window !== "undefined") {
-    const item: AppLocalStorage = JSON.parse(
+    let item: AppLocalStorage = JSON.parse(
       localStorage.getItem(STORAGE_NAME)
-    );
+    )??{};
 
     switch (payload.type) {
       case "currentMusic":
@@ -62,7 +62,7 @@ const changeAppLocalStorage = (payload: AppLocalStoragePayload) => {
 export const useAppStore = create<AppStoreState>()((set) => ({
   currentMusic: null,
   isPlaying: false,
-  repeatType: "all",
+  repeatType: "off",
   volume: 1,
   playList: [],
   playListId: "",

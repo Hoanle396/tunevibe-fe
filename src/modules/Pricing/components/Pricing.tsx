@@ -150,9 +150,9 @@ const Pricing = () => {
     <div className="flex flex-col justify-center items-center py-3 min-h-screen font-sans">
       {/* heading section  */}
       <div className="flex flex-col w-auto px-6 text-center text-4xl sm:text-3xl md:text-4xl">
-        <span className="font-semibold bg-gradient bg-clip-text text-transparent">Listen to</span>
+        <span className="font-semibold bg-accent bg-clip-text text-transparent">Listen to</span>
         <span
-          className="font-semibold bg-gradient bg-clip-text text-transparent"
+          className="font-semibold bg-accent bg-clip-text text-transparent"
         >
           Global Talented Artists.
         </span>
