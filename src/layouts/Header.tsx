@@ -1,4 +1,3 @@
-import Button from "@/components/Button";
 import { ConnectButton } from "@/components/Button/ConnectButton";
 import Link from "next/link";
 
@@ -18,8 +17,8 @@ export const MENU = [
     path: "/music",
   },
   {
-    name: "Creator",
-    path: "/creator",
+    name: "Pricing",
+    path: "/pricing",
   },
 ];
 
@@ -45,7 +44,7 @@ const Header = (props: Props) => {
               </div>
             </Link>
           ))}
-          <ConnectButton/>
+          <ConnectButton />
         </div>
       </div>
     </div>
