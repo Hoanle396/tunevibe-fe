@@ -15,8 +15,13 @@ const menuList = [
     icon: <SiYoutubemusic />,
   },
   {
-    href: "/musics",
-    label: "Musics",
+    href: "/my-library",
+    label: "My Library",
+    icon: <CgProfile />,
+  },
+  {
+    href: "/music",
+    label: "Music",
     icon: <CiMusicNote1 />,
   },
   {
@@ -42,6 +47,16 @@ const menuListLib = [
     label: "Profile",
     icon: <CgProfile />,
   },
+  {
+    href: "/creator",
+    label: "Creator",
+    icon: <CgProfile />,
+  },
+  {
+    href: "/market",
+    label: "Market",
+    icon: <CgProfile />,
+  },
 ];
 
 const Sidebar: FCC = () => {
@@ -50,7 +65,7 @@ const Sidebar: FCC = () => {
       id="default-sidebar"
       className="m-0 sm:m-2 fixed z-40 w-64 h-[calc(100vh-16px)] transition-transform -translate-x-full sm:translate-x-0"
       aria-label="Sidebar"
-      suppressHydrationWarning 
+      suppressHydrationWarning
     >
       <div className="h-full px-3 py-4 rounded-xl overflow-clip relative aside">
         <ul className="space-y-2 font-medium">

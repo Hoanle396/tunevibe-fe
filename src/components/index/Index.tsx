@@ -4,15 +4,17 @@ import IndexTrends from "./trends/IndexTrends";
 import styles from "./Index.module.scss";
 
 const Index = ({
-  trends,
-  topMusics,
+  trends = [],
+  topMusics = [],
+  hiddenTrend = false,
 }: {
-  trends: Music[];
-  topMusics: Music[];
+  trends?: Music[];
+  topMusics?: Music[];
+  hiddenTrend?: boolean;
 }) => {
   return (
     <section className={styles.section}>
-      <IndexTrends trendsInfo={trends} />
+      {!hiddenTrend && <IndexTrends trendsInfo={trends} />}
       <div className={styles.content}>
         <IndexTopChart musics={topMusics} />
       </div>
