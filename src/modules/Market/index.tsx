@@ -3,7 +3,7 @@ import React from 'react'
 
 type Props = {}
 
-const Market :FCC= (props: Props) => {
+const Market= (props: Props) => {
   return (
     <div>Market</div>
   )

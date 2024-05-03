@@ -3,7 +3,7 @@ import React from "react";
 
 type Props = {};
 
-const Creator: FCC = (props: Props) => {
+const Creator = (props: Props) => {
   return <div>Creator</div>;
 };
 
