@@ -1,0 +1,28 @@
+.audioCard_box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 2rem);
+  overflow: hidden;
+  transition: all .3s ease-in;
+}
+
+.audioCard_box_player {
+  grid-column: 1 / -1;
+  grid-row: 3 / 5;
+  display: flex;
+  padding: 0 3rem;
+  gap: 4rem;
+  z-index: 1234;
+  align-items: center;
+}
+
+.audioCard_box_musicPlayer_icon {
+  padding: 1.3rem;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--icons-color);
+  color: var(--main-bg-color);
+  font-size: 2rem;
+  cursor: pointer;
+}
