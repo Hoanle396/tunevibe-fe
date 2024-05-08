@@ -1,0 +1,1 @@
+export const AI_URL = process.env.AI_URL || "http://localhost:5000" 

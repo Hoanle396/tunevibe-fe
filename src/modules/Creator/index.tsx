@@ -6,11 +6,32 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import MusicUploadField from "./components/MusicUploadField";
 import { Tab, Tabs } from "./components/Tabs";
+import TextArea from "@/components/Form/TextArea";
+import TextField from "@/components/Form/TextField";
+import { useMutation } from "react-query";
+import { uploadTranscript } from "@/apis/transcript";
+import { message } from "antd";
 type Props = {};
 
 const Creator = (props: Props) => {
+  const [messageApi, contextHolder] = message.useMessage();
   const form = useForm({});
-  const [file, setFile] = useState<File | null>(null);
+  const { setValue } = form;
+
+  const { mutate, isLoading } = useMutation(uploadTranscript, {
+    onSuccess: ({ data }) => {
+      setValue("content", data);
+    },
+    onError: ({ data }) => {
+      messageApi.error("Error went detect lyrics");
+    },
+  });
+
+  const onChangeFile = (file: File) => {
+    setValue("content", "");
+    mutate(file);
+  };
+
   const onSubmit = async (data: any) => {
     console.log("Please enter full image, name, description and price");
   };
@@ -23,14 +44,37 @@ const Creator = (props: Props) => {
         <Tab label="Music">
           <FormWrapper methods={form} onSubmit={onSubmit} className="pb-20">
             <h2 className="text-xl font-medium mb-2">Music Upload</h2>
-            <div className="py-4 max-w-md mx-auto">
+            <div className="py-4 max-w-lg mx-auto flex flex-col gap-4">
+              <TextField
+                name="name"
+                label="Name"
+                placeholder="Enter name of the music"
+              />
               <MusicUploadField
                 control={form.control}
-                name="image"
-                onToggle={(file) => {
-                  setFile(file);
-                }}
+                name="music"
+                onToggle={onChangeFile}
               />
+              <TextArea name="content" label="Lyrics" loading={isLoading} />
+              <TextField
+                name="price"
+                label="Price to download"
+                type="number"
+                placeholder="10 BNB"
+              />
+              <TextField
+                name="limit"
+                label="Limit download"
+                type="number"
+                placeholder="10"
+              />
+              <button
+                disabled={isLoading}
+                type="submit"
+                className="flex disabled:bg-gray-400 w-full h-14 justify-center items-center border rounded-full text-white hover:bg-[#0d152a50] hover:ring-2 hover:ring-white"
+              >
+                Mint and Sale Now
+              </button>
             </div>
           </FormWrapper>
         </Tab>
@@ -59,6 +103,7 @@ const Creator = (props: Props) => {
           </div>
         </Tab>
       </Tabs>
+      {contextHolder}
     </div>
   );
 };

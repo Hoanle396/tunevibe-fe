@@ -30,7 +30,7 @@ const AudioCard: FCC<Props> = ({ children, src }) => {
           <Image
             src={"/images/musicwave.png"}
             alt="musice"
-            width={200}
+            width={300}
             height={100}
           />
           <audio ref={ref} className="hidden">
@@ -53,7 +53,7 @@ const AudioCard: FCC<Props> = ({ children, src }) => {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-center">{children}</div>
+      <div className="w-full flex justify-center pb-4">{children}</div>
     </div>
   );
 };

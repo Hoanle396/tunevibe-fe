@@ -57,7 +57,7 @@ const MusicUploadField: FCC<Props> = ({
       name={name}
       render={({ field, fieldState: { error } }) => (
         <div className="w-full">
-          <div className="w-full max-w-full aspect-video flex flex-col gap-8 items-center justify-center rounded-2xl border-[2px] border-white border-dashed">
+          <div className="w-full max-w-full h-52 flex flex-col gap-8 items-center justify-center rounded-2xl border-[2px] border-white border-dashed">
             {field.value ? (
               <div className="w-full h-full p-1 shadow-[rgba(149,157,165,0.2)0px8px24px] relative">
                 <div className="relative w-full h-full block">
@@ -65,7 +65,7 @@ const MusicUploadField: FCC<Props> = ({
                     {!disabled && (
                       <div className="self-center">
                         <button
-                          className="rounded-lg px-3 py-1 bg-white text-accent tex-lg font-semibold"
+                          className="rounded-lg px-3 py-1 mb-2 bg-white text-accent tex-lg font-semibold"
                           onClick={onToggleChooseFile}
                         >
                           reload
