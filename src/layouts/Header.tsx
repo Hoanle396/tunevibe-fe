@@ -10,7 +10,7 @@ export const MENU = [
   },
   {
     name: "Market",
-    path: "/market-place",
+    path: "/market",
   },
   {
     name: "Music",

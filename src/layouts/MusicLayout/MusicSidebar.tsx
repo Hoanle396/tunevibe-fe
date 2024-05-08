@@ -1,19 +1,14 @@
 import Link from "next/link";
 
 import { FCC } from "@/types";
-import { CiMusicNote1, CiSettings } from "react-icons/ci";
-import { FaGuilded, FaHistory } from "react-icons/fa";
-import { SiYoutubemusic } from "react-icons/si";
-import { MdRecentActors } from "react-icons/md";
-import { IoPlayCircleSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { CiMusicNote1, CiSettings } from "react-icons/ci";
+import { FaHistory } from "react-icons/fa";
+import { IoPlayCircleSharp } from "react-icons/io5";
+import { SiYoutubemusic } from "react-icons/si";
+import { BiPencil } from "react-icons/bi";
 
 const menuList = [
-  {
-    href: "/explore",
-    label: "Explore",
-    icon: <SiYoutubemusic />,
-  },
   {
     href: "/my-library",
     label: "My Library",
@@ -23,6 +18,11 @@ const menuList = [
     href: "/music",
     label: "Music",
     icon: <CiMusicNote1 />,
+  },
+  {
+    href: "/market",
+    label: "Market",
+    icon: <SiYoutubemusic />,
   },
   {
     href: "/artists",
@@ -50,12 +50,7 @@ const menuListLib = [
   {
     href: "/creator",
     label: "Creator",
-    icon: <CgProfile />,
-  },
-  {
-    href: "/market",
-    label: "Market",
-    icon: <CgProfile />,
+    icon: <BiPencil />,
   },
 ];
 

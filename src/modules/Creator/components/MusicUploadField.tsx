@@ -78,16 +78,16 @@ const MusicUploadField: FCC<Props> = ({
             ) : (
               <div
                 onClick={onToggleChooseFile}
-                className="flex w-full h-full rounded-2xl justify-center flex-col gap-4 items-center cursor-pointer hover:bg-[#E05BFF10]"
+                className="flex w-full h-full rounded-2xl justify-center flex-col gap-2 items-center cursor-pointer hover:bg-[#E05BFF10]"
               >
-                <BsFillFileMusicFill size={48} />
-                <span className="text-2xl font-bold lg:text-3xl ">
+                <BsFillFileMusicFill size={32} />
+                <span className="text-xl font-bold lg:text-2xl ">
                   Drop file here
                 </span>
-                <p className="text-lg font-medium lg:text-xl">
+                <p className="text-md font-medium lg:text-lg">
                   Accept wma, mp3, wav, flac, m4a
                 </p>
-                <p className="text-lg font-medium lg:text-xl">
+                <p className="text-md font-medium lg:text-lg">
                   Or choose file here
                 </p>
                 <button

@@ -1,12 +1,18 @@
-import { FCC } from '@/types'
-import React from 'react'
+"use client";
+import LiveNFTs from "./components/LiveNFTs";
+import Monster from "./components/Monster";
+import StepByStep from "./components/StepbyStep";
 
-type Props = {}
+type Props = {};
 
-const Market= (props: Props) => {
+const Market = (props: Props) => {
   return (
-    <div>Market</div>
-  )
-}
+    <div className="container mx-auto">
+      <Monster/>
+      <LiveNFTs />
+      <StepByStep />
+    </div>
+  );
+};
 
-export default Market
+export default Market;
