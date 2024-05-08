@@ -11,10 +11,13 @@ import TextField from "@/components/Form/TextField";
 import { useMutation } from "react-query";
 import { uploadTranscript } from "@/apis/transcript";
 import { message } from "antd";
+import { uploadFileToIPFS } from "@/apis/ipfs";
 type Props = {};
 
 const Creator = (props: Props) => {
   const [messageApi, contextHolder] = message.useMessage();
+  const [file, setFile] = useState<File | null>(null);
+
   const form = useForm({});
   const { setValue } = form;
 
@@ -25,15 +28,36 @@ const Creator = (props: Props) => {
     onError: ({ data }) => {
       messageApi.error("Error went detect lyrics");
     },
+    onMutate: () => {
+      setValue("content", "");
+    },
+  });
+
+  const { mutateAsync: mutatePinIPFS } = useMutation(uploadFileToIPFS, {
+    onSuccess: () => {
+      messageApi.success("Successfully upload to ipfs");
+    },
+    onError: ({ data }) => {
+      messageApi.error("Error went upload file");
+    },
+    onMutate: () => {},
   });
 
   const onChangeFile = (file: File) => {
-    setValue("content", "");
+    setFile(file);
     mutate(file);
   };
 
-  const onSubmit = async (data: any) => {
-    console.log("Please enter full image, name, description and price");
+  const onSubmit = async ({ name, content, price, limit }: any) => {
+    if (!name || !file || !content || !price || !limit) {
+      messageApi.error("Please fill full information");
+      return;
+    } else {
+      try {
+        const { hash } = await mutatePinIPFS(file);
+        console.log({ hash });
+      } catch (error) {}
+    }
   };
   return (
     <div className="flex flex-col w-full">
