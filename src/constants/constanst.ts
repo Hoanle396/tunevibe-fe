@@ -8,3 +8,5 @@ export const GRAPHQL_URL =
 export const STORAGE_KEY = {
   TOKEN: "token",
 } as const;
+
+export const MAIN_ROUTE = ["/market", "/pricing", "/register", "/"];

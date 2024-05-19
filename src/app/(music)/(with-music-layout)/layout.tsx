@@ -1,10 +1,10 @@
 "use client";
+import Player from "@/components/player/Player";
+import PlayListProvider from "@/components/providers/PlayListProvider";
 import MusicHeader from "@/layouts/MusicLayout/Header";
 import MusicSidebar from "@/layouts/MusicLayout/MusicSidebar";
 import "@/styles/global.scss";
 import { Alex_Brush, Montserrat } from "next/font/google";
-import Player from "@/components/player/Player";
-import PlayListProvider from "@/components/providers/PlayListProvider";
 
 const alex_Brush = Alex_Brush({
   subsets: ["latin"],

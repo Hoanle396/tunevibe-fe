@@ -1,11 +1,10 @@
-import Footer from "@/layouts/Footer";
+import AudioLive from "@/components/AudioLive/AudioLive";
 import AboutSection from "./AboutSection";
 import CategorySection from "./CategorySection";
 import Download from "./DownloadSection";
 import HeroSection from "./HeroSection";
 import IntroSection from "./IntroSection";
 import SlideSection from "./SlideSection";
-import AudioLive from "@/components/AudioLive/AudioLive";
 
 export const Home = () => {
   return (
@@ -17,7 +16,6 @@ export const Home = () => {
       <AudioLive/>
       <SlideSection />
       <Download />
-      <Footer />
     </div>
   );
 };

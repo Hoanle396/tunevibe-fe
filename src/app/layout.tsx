@@ -11,6 +11,9 @@ import {
   QueryClientProvider,
 } from "react-query";
 import { useState } from "react";
+import Footer from "@/layouts/Footer";
+import { usePathname } from "next/navigation";
+import { MAIN_ROUTE } from "@/constants/constanst";
 
 const alex_Brush = Alex_Brush({
   subsets: ["latin"],
@@ -35,6 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [queryClient] = useState(new QueryClient(queryClientOption));
+  const pathname = usePathname();
   return (
     <html lang="en">
       <ApolloProvider client={client}>
@@ -43,8 +47,9 @@ export default function RootLayout({
             <body
               className={`${alex_Brush.variable} ${montserrat.variable} overflow-x-hidden relative`}
             >
-              <Header />
+              {MAIN_ROUTE.find((name) => pathname == name) && <Header />}
               {children}
+              {MAIN_ROUTE.find((name) => pathname == name) && <Footer />}
             </body>
           </Web3Provider>
         </QueryClientProvider>

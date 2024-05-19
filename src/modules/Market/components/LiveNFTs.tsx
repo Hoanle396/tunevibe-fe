@@ -1,8 +1,11 @@
-"use client"
+"use client";
 import { FCC } from "@/types";
 import NFTCard from "./NFTCard";
+import { useState } from "react";
+import Pagination from "@/components/Pagination";
 
 const LiveNFTs: FCC = () => {
+  const [page, setPage] = useState(1);
   const nfts = [
     {
       price: "10.0",
@@ -150,6 +153,15 @@ const LiveNFTs: FCC = () => {
         <div className="w-full grid grid-flow-row xl:gap-12 gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {!!nfts && nfts.map((v, i: number) => <NFTCard {...v} key={i} />)}
         </div>
+
+        <Pagination
+          defaultCurrent={1}
+          pageSize={10}
+          hideOnSinglePage
+          onChange={(newPage) => setPage(newPage)}
+          total={nfts.length ?? 0}
+          showSizeChanger={false}
+        />
       </div>
     </div>
   );
