@@ -9,7 +9,7 @@ import {
   FieldValues,
   useFormContext,
 } from "react-hook-form";
-import { BsFillFileMusicFill } from "react-icons/bs";
+import { BsFillFileImageFill, BsFillFileMusicFill } from "react-icons/bs";
 
 interface Props {
   label?: string;
@@ -89,7 +89,7 @@ const ImageUploadField: FCC<Props> = ({
                 onClick={onToggleChooseFile}
                 className="flex w-full h-full rounded-2xl justify-center flex-col gap-2 items-center cursor-pointer hover:bg-[#E05BFF10]"
               >
-                <BsFillFileMusicFill size={32} />
+                <BsFillFileImageFill size={32} />
                 <span className="text-xl font-bold lg:text-2xl ">
                   Drop file here
                 </span>

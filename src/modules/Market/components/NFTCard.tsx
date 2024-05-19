@@ -1,19 +1,13 @@
-"use client"
+"use client";
 import Avatar from "@/components/Avatar";
 import { cutString } from "@/libs/function";
 import { FCC } from "@/types";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { BiHeart } from "react-icons/bi";
+import MusicPlayer from "./MusicPlayer";
 
-const NFTCard: FCC<any> = ({
-  image,
-  name,
-  owner,
-  price,
-  seller,
-  tokenId,
-}) => {
+const NFTCard: FCC<any> = ({ image, name, owner, price, seller, tokenId }) => {
   const { push } = useRouter();
   return (
     <div
@@ -29,6 +23,7 @@ const NFTCard: FCC<any> = ({
         <div className="flex flex-row justify-end items-center absolute right-3 top-3 font-medium bg-black rounded-lg px-2 py-1 gap-1">
           <BiHeart /> <p>100</p>
         </div>
+        <MusicPlayer src="/musics/trends/7 rings.mp3" />
       </div>
       <p className="flex justify-between items-center text-xs md:text-lg font-semibold">
         {name}

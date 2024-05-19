@@ -7,6 +7,7 @@ import { useState } from "react";
 import { BiHeart } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 import TimeLive from "./TimeLive";
+import MusicPlayer from "./MusicPlayer";
 
 type Props = {};
 
@@ -36,12 +37,13 @@ const NFTDetail: FCC = (props: Props) => {
   return (
     <div className="h-full min-h-[calc(100vh-256px)] w-full flex justify-center items-center py-16">
       <div className="container max-w-screen-2xl grid grid-cols-12 gap-12">
-        <div className="col-span-12 xl:col-span-6">
+        <div className="col-span-12 xl:col-span-6 relative">
           <img
             src={nft?.image ?? ""}
             className="w-full aspect-square rounded-xl"
             alt="banner image"
           />
+          <MusicPlayer src="/musics/trends/7 rings.mp3" />
         </div>
         <div className="col-span-12 xl:col-span-6 items-center lg:items-start flex flex-col gap-6">
           <div className="flex flex-row w-full items-center gap-2 justify-between">
