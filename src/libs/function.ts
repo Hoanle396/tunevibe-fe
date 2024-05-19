@@ -1,4 +1,3 @@
-
 export const cutString = (
   str?: string,
   start: number = 5,
@@ -18,4 +17,16 @@ export const getErrorMessage = (error: any) => {
     }
   }
   return "Something went wrong when execute transaction";
+};
+
+export const getStorage = (key: string): string => {
+  try {
+    return localStorage.getItem(key) ?? "";
+  } catch {
+    return "";
+  }
+};
+
+export const setStorage = (key: string, value: string) => {
+  return localStorage.setItem(key, value);
 };
