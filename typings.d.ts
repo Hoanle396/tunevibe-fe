@@ -80,3 +80,7 @@ type ButtonType =
   | "secondary-outline"
   | "secondary-flat"
   | "danger";
+
+  interface Window {
+    ethereum: any
+  }
