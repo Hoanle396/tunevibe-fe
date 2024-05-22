@@ -1,13 +1,14 @@
 "use client";
 import Pagination from "@/components/Pagination";
 import React, { useState } from "react";
-import ArtistCard from "./components/ArtistCard";
+import AlbumCard from "./AlbumCard";
+import MainCard from "@/components/ui/main-card/MainCard";
 
 type Props = {};
 
-const Artists = (props: Props) => {
+const Albums = (props: Props) => {
   const [page, setPage] = useState(1);
-  const artists: any[] = [
+  const album: any[] = [
     {
       name: "Artist",
       thumbnail: "/images/artist/ahmad-solo.webp",
@@ -34,26 +35,15 @@ const Artists = (props: Props) => {
     },
   ];
   return (
-    <div className="h-full w-full flex flex-col items-center gap-10 pb-32">
-      <div className="flex flex-row w-full justify-between text-white">
-        <p className="text-4xl font-bold">Top Artist</p>
-      </div>
-      <div className=" container w-full grid grid-flow-row xl:gap-12 gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {!!artists &&
-          [...artists, ...artists, ...artists].map((v, i: number) => (
-            <ArtistCard {...v} key={i} />
+    <MainCard title="Albums">
+      <div className="w-full grid grid-flow-row xl:gap-12 gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        {!!album &&
+          [...album].map((music, index) => (
+            <AlbumCard key={music.id} {...music} />
           ))}
       </div>
-      <Pagination
-        defaultCurrent={1}
-        pageSize={10}
-        hideOnSinglePage
-        onChange={(newPage) => setPage(newPage)}
-        total={12}
-        showSizeChanger={false}
-      />
-    </div>
+    </MainCard>
   );
 };
 
-export default Artists;
+export default Albums;

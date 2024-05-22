@@ -1,4 +1,3 @@
-import { FCC } from "@/types";
 import styles from "./components/Index.module.scss";
 import Mylib from "./components/Mylib";
 type Props = {};

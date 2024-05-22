@@ -13,6 +13,8 @@ interface Artist {
   name: string;
   avatar: string;
   musics: Music[];
+  createdAt?: string;
+  musicCount?: number;
 }
 
 interface User extends BaseInfo {

@@ -26,7 +26,7 @@ const IndexTopChart = ({ musics }: { musics: Music[] }) => {
   };
 
   return (
-    <MainCard title="Top Charts" link="/musics" text="See all">
+    <MainCard title="Top Charts" link="/market" text="See all">
       <ul className={styles.list}>
         {musics.map((music, index) => (
           <IndexTopChartItem

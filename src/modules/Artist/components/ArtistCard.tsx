@@ -1,0 +1,47 @@
+import Avatar from "@/components/Avatar";
+import { FCC } from "@/types";
+import React from "react";
+
+type Props = {
+  name: string;
+  thumbnail: string;
+  createdAt: string;
+  description: string;
+};
+
+const ArtistCard: FCC<Props> = ({
+  createdAt,
+  description,
+  name,
+  thumbnail,
+}) => {
+  return (
+    <div className="bg-transparent ring-2 hover:ring-4 cursor-pointer ring-purple-500 hover:bg-[#34344499] shadow-lg hover:shadow-purple-400 hover:shadow-xl h-fit p-4 text-white flex flex-col gap-4 rounded-2xl">
+      <div className="relative w-full h-fit">
+        <img
+          className="w-full rounded-xl aspect-square"
+          src={thumbnail}
+          alt="anh"
+        />
+      </div>
+      <p className="flex justify-between items-center text-xs md:text-lg font-semibold">
+        {name}
+      </p>
+      <div className="w-full flex flex-row justify-between items-center">
+        <div className="flex justify-start flex-row items-center gap-4 ">
+          <Avatar username={name} className="w-10 h-10 rounded-xl border" />
+          <div className="flex flex-col items-start">
+            <p className="text-[#8A8AA0] font-medium">Artist</p>
+            <p className="font-semibold">{name}</p>
+          </div>
+        </div>
+        <div className="flex flex-col items-end">
+          <p className="text-[#8A8AA0] font-medium">Joined At</p>
+          <p className="font-semibold">{createdAt}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ArtistCard;

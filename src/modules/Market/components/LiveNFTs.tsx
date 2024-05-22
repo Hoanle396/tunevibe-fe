@@ -142,27 +142,25 @@ const LiveNFTs: FCC = () => {
   ];
 
   return (
-    <div>
-      <div className="h-full w-full flex flex-col items-center py-16 gap-16">
-        <div className="flex flex-row w-full justify-between text-white">
-          <p className="text-4xl font-bold">Live Auctions</p>
-          <p className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E250E5] to-[#4B50E6]">
-            EXPLORE MORE
-          </p>
-        </div>
-        <div className="w-full grid grid-flow-row xl:gap-12 gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {!!nfts && nfts.map((v, i: number) => <NFTCard {...v} key={i} />)}
-        </div>
-
-        <Pagination
-          defaultCurrent={1}
-          pageSize={10}
-          hideOnSinglePage
-          onChange={(newPage) => setPage(newPage)}
-          total={nfts.length ?? 0}
-          showSizeChanger={false}
-        />
+    <div className="h-full w-full flex flex-col items-center py-16 gap-16">
+      <div className="flex flex-row w-full justify-between text-white">
+        <p className="text-4xl font-bold">Live Auctions</p>
+        <p className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E250E5] to-[#4B50E6]">
+          EXPLORE MORE
+        </p>
       </div>
+      <div className="w-full grid grid-flow-row xl:gap-12 gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {!!nfts && nfts.map((v, i: number) => <NFTCard {...v} key={i} />)}
+      </div>
+
+      <Pagination
+        defaultCurrent={1}
+        pageSize={10}
+        hideOnSinglePage
+        onChange={(newPage) => setPage(newPage)}
+        total={nfts.length ?? 0}
+        showSizeChanger={false}
+      />
     </div>
   );
 };
