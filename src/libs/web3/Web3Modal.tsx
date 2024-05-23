@@ -1,15 +1,15 @@
 "use client";
 
 import { FCC } from "@/types";
-import { BSCTestnet } from "@usedapp/core";
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers5/react";
+import { bscTestnet } from "viem/chains";
 
 // 1. Get projectId at https://cloud.walletconnect.com
 const projectId = "YOUR_PROJECT_ID";
 
 // 2. Set chains
 const mainnet = {
-  chainId: BSCTestnet.chainId,
+  chainId: bscTestnet.id,
   name: "BSCTestnet",
   currency: "BNB",
   explorerUrl: "https://etherscan.io",
@@ -34,7 +34,7 @@ const ethersConfig = defaultConfig({
   enableInjected: true, // true by default
   enableCoinbase: true, // true by default
   rpcUrl: "...", // used for the Coinbase SDK
-  defaultChainId: BSCTestnet.chainId, // used for the Coinbase SDK
+  defaultChainId: bscTestnet.id, // used for the Coinbase SDK
 });
 
 // 5. Create a Web3Modal instance
