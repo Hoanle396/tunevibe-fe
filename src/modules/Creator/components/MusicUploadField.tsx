@@ -19,7 +19,6 @@ interface Props {
   hideError?: boolean;
   onToggle: (file: File) => void;
   disabled?: boolean;
-  control: Control<FieldValues, any>;
 }
 
 const MusicUploadField: FCC<Props> = ({
@@ -29,10 +28,9 @@ const MusicUploadField: FCC<Props> = ({
   label,
   disabled = false,
   onToggle,
-  control,
   ...props
 }) => {
-  const { setValue } = useFormContext();
+  const { setValue, control } = useFormContext();
   const refFile = useRef<HTMLInputElement>(null);
 
   const onChooseFile = (e: BaseSyntheticEvent) => {

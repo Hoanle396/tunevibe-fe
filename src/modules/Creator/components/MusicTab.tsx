@@ -70,13 +70,8 @@ const MusicTab: FCC<Props> = (props: Props) => {
           label="Name"
           placeholder="Enter name of the music"
         />
-        <MusicUploadField
-          control={form.control}
-          name="music"
-          onToggle={onChangeFile}
-        />
+        <MusicUploadField name="music" onToggle={onChangeFile} />
         <ImageUploadField
-          control={form.control}
           name="thumbnail"
           label="Thumbnail Image"
           onToggle={() => {}}

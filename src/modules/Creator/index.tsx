@@ -9,9 +9,9 @@ type Props = {};
 const Creator = (props: Props) => {
   return (
     <div className="flex flex-col w-full">
-      <div className="w-fit max-w-md">
+      {/* <div className="w-fit max-w-md">
         <AudioCard />
-      </div>
+      </div> */}
       <Tabs>
         <Tab label="Music">
           <MusicTab />

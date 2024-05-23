@@ -3,13 +3,8 @@ import { FCC } from "@/types";
 import Image from "next/image";
 import type { BaseSyntheticEvent } from "react";
 import { useRef } from "react";
-import {
-  Control,
-  Controller,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
-import { BsFillFileImageFill, BsFillFileMusicFill } from "react-icons/bs";
+import { Controller, useFormContext } from "react-hook-form";
+import { BsFillFileImageFill } from "react-icons/bs";
 
 interface Props {
   label?: string;
@@ -18,7 +13,6 @@ interface Props {
   hideError?: boolean;
   onToggle: (file: File) => void;
   disabled?: boolean;
-  control: Control<FieldValues, any>;
   square?: boolean;
 }
 
@@ -29,11 +23,11 @@ const ImageUploadField: FCC<Props> = ({
   label,
   disabled = false,
   onToggle,
-  control,
   square = false,
   ...props
 }) => {
-  const { setValue } = useFormContext();
+  const { setValue, control } = useFormContext();
+
   const refFile = useRef<HTMLInputElement>(null);
 
   const onChooseFile = (e: BaseSyntheticEvent) => {
