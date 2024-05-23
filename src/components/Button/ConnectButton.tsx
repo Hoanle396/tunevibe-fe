@@ -1,16 +1,18 @@
-import { cutString, getStorage, setStorage } from "@/libs/function";
-import { useEthers } from "@usedapp/core";
+import { LOGIN_WALLET_QUERY } from "@/@apollo/queries/auth";
+import { STORAGE_KEY } from "@/constants/constanst";
+import { cutString, setStorage } from "@/libs/function";
+import { useQuery } from "@apollo/client";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAccount, useConnect } from "wagmi";
+import { metaMask } from "wagmi/connectors";
 import Button from ".";
 import Avatar from "../Avatar";
-import { useQuery } from "@apollo/client";
-import { LOGIN_QUERY, LOGIN_WALLET_QUERY } from "@/@apollo/queries/auth";
 import Loading from "../ui/loading/Loading";
-import { usePathname, useRouter } from "next/navigation";
-import { STORAGE_KEY } from "@/constants/constanst";
-import { useEffect } from "react";
 
 export const ConnectButton = () => {
-  const { account: wallet, deactivate, activateBrowserWallet } = useEthers();
+  const { address: wallet } = useAccount();
+  const { connect } = useConnect();
   const { push } = useRouter();
 
   const path = usePathname();
@@ -36,14 +38,21 @@ export const ConnectButton = () => {
 
   if (wallet) {
     return (
-      <Button onClick={deactivate} className="flex items-center gap-2">
+      <Button onClick={() => {}} className="flex items-center gap-2">
         <Avatar username={wallet} className="w-6 h-6 border rounded-full" />
         {cutString(wallet)}
       </Button>
     );
   } else
     return (
-      <Button onClick={activateBrowserWallet} className="uppercase">
+      <Button
+        onClick={() =>
+          connect({
+            connector: metaMask(),
+          })
+        }
+        className="uppercase"
+      >
         Connect Wallet
       </Button>
     );

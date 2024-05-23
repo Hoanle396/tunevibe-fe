@@ -1,19 +1,14 @@
 "use client";
 import { client } from "@/@apollo/client/main";
+import { MAIN_ROUTE } from "@/constants/constanst";
+import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
 import Web3Provider from "@/libs/web3/Web3Provider";
 import { ApolloProvider } from "@apollo/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Alex_Brush, Montserrat } from "next/font/google";
-import "../styles/global.scss";
-import {
-  QueryClient,
-  QueryClientConfig,
-  QueryClientProvider,
-} from "react-query";
-import { useState } from "react";
-import Footer from "@/layouts/Footer";
 import { usePathname } from "next/navigation";
-import { MAIN_ROUTE } from "@/constants/constanst";
+import "../styles/global.scss";
 
 const alex_Brush = Alex_Brush({
   subsets: ["latin"],
@@ -26,24 +21,19 @@ const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-montserrat",
 });
-const queryClientOption: QueryClientConfig = {
-  defaultOptions: {
-    queries: { refetchOnWindowFocus: false, retry: false, staleTime: 1000 * 5 },
-  },
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [queryClient] = useState(new QueryClient(queryClientOption));
+  const queryClient = new QueryClient();
   const pathname = usePathname();
   return (
     <html lang="en">
       <ApolloProvider client={client}>
-        <QueryClientProvider client={queryClient}>
-          <Web3Provider>
+        <Web3Provider>
+          <QueryClientProvider client={queryClient}>
             <body
               className={`${alex_Brush.variable} ${montserrat.variable} overflow-x-hidden relative`}
             >
@@ -51,8 +41,8 @@ export default function RootLayout({
               {children}
               {MAIN_ROUTE.find((name) => pathname == name) && <Footer />}
             </body>
-          </Web3Provider>
-        </QueryClientProvider>
+          </QueryClientProvider>
+        </Web3Provider>
       </ApolloProvider>
     </html>
   );

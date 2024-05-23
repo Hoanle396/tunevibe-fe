@@ -6,9 +6,9 @@ import TextArea from "@/components/Form/TextArea";
 import TextField from "@/components/Form/TextField";
 import useToast from "@/hooks/use-toast";
 import { FCC } from "@/types";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
 import ImageUploadField from "./ImageUpLoadField";
 import MusicUploadField from "./MusicUploadField";
 
@@ -21,11 +21,12 @@ const MusicTab: FCC<Props> = (props: Props) => {
   const form = useForm({});
   const { setValue } = form;
 
-  const { mutate, isLoading } = useMutation(uploadTranscript, {
-    onSuccess: ({ data }) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: uploadTranscript,
+    onSuccess: ({ data }: any) => {
       setValue("content", data);
     },
-    onError: ({ data }) => {
+    onError: () => {
       toast.error("Error went detect lyrics");
     },
     onMutate: () => {
@@ -33,11 +34,12 @@ const MusicTab: FCC<Props> = (props: Props) => {
     },
   });
 
-  const { mutateAsync: mutatePinIPFS } = useMutation(uploadFileToIPFS, {
+  const { mutateAsync: mutatePinIPFS } = useMutation({
+    mutationFn: uploadFileToIPFS,
     onSuccess: () => {
       toast.success("Successfully upload to ipfs");
     },
-    onError: ({ data }) => {
+    onError: () => {
       toast.error("Error went upload file");
     },
     onMutate: () => {},
@@ -79,7 +81,7 @@ const MusicTab: FCC<Props> = (props: Props) => {
           label="Thumbnail Image"
           onToggle={() => {}}
         />
-        <TextArea name="content" label="Lyrics" loading={isLoading} />
+        <TextArea name="content" label="Lyrics" loading={isPending} />
         <TextField
           name="price"
           label="Price to download"
@@ -93,7 +95,7 @@ const MusicTab: FCC<Props> = (props: Props) => {
           placeholder="10"
         />
         <button
-          disabled={isLoading}
+          disabled={isPending}
           type="submit"
           className="flex disabled:bg-gray-400 w-full h-14 justify-center items-center border rounded-full text-white hover:bg-[#0d152a50] hover:ring-2 hover:ring-white"
         >

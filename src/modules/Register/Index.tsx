@@ -6,15 +6,14 @@ import { STORAGE_KEY } from "@/constants/constanst";
 import useToast from "@/hooks/use-toast";
 import { setStorage } from "@/libs/function";
 import { useMutation } from "@apollo/client";
-import { useEthers } from "@usedapp/core";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { useForm } from "react-hook-form";
+import { useAccount } from "wagmi";
 
 const Register = () => {
   const { toast, context } = useToast();
   const { push } = useRouter();
-  const { account: wallet } = useEthers();
+  const { address: wallet } = useAccount();
   const [mutate, {}] = useMutation(REGISTER_QUERY, {
     onCompleted: ({ data }) => {
       setStorage(STORAGE_KEY.TOKEN, data?.createUser?.token || "");
