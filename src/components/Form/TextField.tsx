@@ -40,10 +40,8 @@ const TextField: FC<Props> = ({
             {...props}
             {...field}
             name={name}
-            value={field.value}
             type={type}
             className={`ring-blue-500 ring-2 h-14 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 bg-transparent placeholder-gray-300 text-white ${className}`}
-            onChange={(e) => setValue(`${name}`, e.target.value)}
           />
         </div>
       )}

@@ -17,7 +17,7 @@ export const ConnectButton = () => {
 
   const path = usePathname();
 
-  const { loading, refetch } = useQuery(LOGIN_WALLET_QUERY, {
+  const { refetch } = useQuery(LOGIN_WALLET_QUERY, {
     variables: {
       wallet,
     },
@@ -34,12 +34,15 @@ export const ConnectButton = () => {
     if (wallet) refetch();
   }, [refetch, wallet]);
 
-  if (loading) return <Loading />;
-
   if (wallet) {
     return (
-      <Button onClick={() => {}} className="flex items-center gap-2">
-        <Avatar username={wallet} className="w-6 h-6 border rounded-full" />
+      <Button
+        onClick={() => {}}
+        className="flex items-center gap-2"
+        icon={
+          <Avatar username={wallet} className="w-6 h-6 border rounded-full" />
+        }
+      >
         {cutString(wallet)}
       </Button>
     );

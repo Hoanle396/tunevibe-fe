@@ -30,7 +30,7 @@ export default function RootLayout({
   const queryClient = new QueryClient();
   const pathname = usePathname();
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <ApolloProvider client={client}>
         <Web3Provider>
           <QueryClientProvider client={queryClient}>

@@ -9,7 +9,7 @@ export const uploadFileToIPFS = (file: File): Promise<IResponsePinIPFS> => {
     method: "POST",
     url: "/pinIpfs",
     headers: {
-      Authorization: IPFS_API_KEY
+      Authorization: IPFS_API_KEY,
     },
     data: formData,
   });

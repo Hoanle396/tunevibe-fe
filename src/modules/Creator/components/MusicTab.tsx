@@ -19,18 +19,17 @@ const MusicTab: FCC<Props> = (props: Props) => {
   const [file, setFile] = useState<File | null>(null);
 
   const form = useForm({});
-  const { setValue } = form;
 
   const { mutate, isPending } = useMutation({
     mutationFn: uploadTranscript,
     onSuccess: ({ data }: any) => {
-      setValue("content", data);
+      form.setValue("content", data);
     },
     onError: () => {
       toast.error("Error went detect lyrics");
     },
     onMutate: () => {
-      setValue("content", "");
+      form.setValue("content", "");
     },
   });
 
@@ -67,7 +66,7 @@ const MusicTab: FCC<Props> = (props: Props) => {
       <div className="py-4 max-w-lg mx-auto flex flex-col gap-4">
         <TextField
           name="name"
-          label="Name"
+          label="Enter name of the music"
           placeholder="Enter name of the music"
         />
         <MusicUploadField name="music" onToggle={onChangeFile} />
