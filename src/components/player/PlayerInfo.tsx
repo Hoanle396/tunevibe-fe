@@ -18,7 +18,7 @@ const PlayerInfo = ({
   artist,
   musicId,
 }: {
-  image: string | StaticImageData;
+  image?: string | StaticImageData;
   imageAlt: string;
   name: string;
   artist: string;
@@ -92,13 +92,15 @@ const PlayerInfo = ({
     <Dropdown placement="topLeft" menu={{ items: playListItems, onClick }}>
       <div className={styles.info}>
         <div className={styles.img}>
-          <Image
-            src={image}
-            width={60}
-            height={60}
-            loading="lazy"
-            alt={imageAlt}
-          />
+          {image && (
+            <Image
+              src={image}
+              width={120}
+              height={120}
+              loading="lazy"
+              alt={imageAlt}
+            />
+          )}
         </div>
         <div>
           <div className={styles.title}>{name}</div>
@@ -110,7 +112,7 @@ const PlayerInfo = ({
             musicId={musicId}
             iconClass={styles.icon}
             activeClass={styles.active}
-          ></FavoriteProvider>
+          />
         )}
         <button className={`btn ${styles.icon}`}>
           <RiPlayListFill />

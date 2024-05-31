@@ -37,11 +37,11 @@ const menuListLib = [
     label: "Recent",
     icon: <FaHistory />,
   },
-  {
-    href: "/playlists",
-    label: "Playlists",
-    icon: <IoPlayCircleSharp />,
-  },
+  // {
+  //   href: "/playlists",
+  //   label: "Playlists",
+  //   icon: <IoPlayCircleSharp />,
+  // },
   {
     href: "/profile",
     label: "Profile",

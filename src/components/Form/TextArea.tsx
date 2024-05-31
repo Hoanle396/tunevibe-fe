@@ -8,6 +8,7 @@ type Props = AreaHTMLAttributes<HTMLTextAreaElement> & {
   label?: any;
   defaultValue?: string;
   loading?: boolean;
+  rows?: number;
 };
 
 const TextArea: FC<Props> = ({
@@ -15,6 +16,7 @@ const TextArea: FC<Props> = ({
   defaultValue = "",
   label,
   className,
+  rows = 10,
   loading = false,
   ...props
 }) => {
@@ -38,7 +40,7 @@ const TextArea: FC<Props> = ({
           </label>
           <div className="relative w-full">
             <textarea
-              rows={10}
+              rows={rows}
               name="name"
               value={field.value}
               onChange={field.onChange}
