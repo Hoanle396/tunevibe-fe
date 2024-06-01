@@ -1,10 +1,7 @@
 "use client";
 
 import Index from "@/components/index/Index";
-import useFee from "@/hooks/use-fee";
 const Music = ({}) => {
-  const { fee, loading } = useFee();
-
   return (
     <Index
       trends={[
