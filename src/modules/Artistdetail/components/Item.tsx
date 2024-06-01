@@ -29,7 +29,7 @@ const Item = ({
     state.setPlayingState,
   ]);
 
-  const { durationSeconds, formatedDuration, output } = useAudioDuration(
+  const { durationSeconds, formattedDuration, output } = useAudioDuration(
     musicData.src
   );
   const number = index < 10 ? `0${index}` : `${index}`;
@@ -71,7 +71,7 @@ const Item = ({
         </Link>
 
         <span className={styles.time}>
-          {durationSeconds ? `${formatedDuration} '` : "00:00 '"}
+          {durationSeconds ? `${formattedDuration} '` : "00:00 '"}
         </span>
         <button
           className={`btn ${styles.button} ${styles.play} ${

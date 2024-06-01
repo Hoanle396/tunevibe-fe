@@ -69,7 +69,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     },
   ];
 
-  const formatedDuration = useFormatSecond(duration);
+  const formattedDuration = useFormatSecond(duration);
 
   useEffect(() => {
     const handler = (e: KeyboardEventInit) => {
@@ -294,7 +294,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
             tooltip={{ open: false }}
           />
           <span className={styles.time}>
-            {formatedDuration ? formatedDuration : "00:00"}
+            {formattedDuration ? formattedDuration : "00:00"}
           </span>
 
           <Dropdown placement="top" menu={{ items: menuItems }}>

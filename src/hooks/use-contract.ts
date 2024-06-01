@@ -1,7 +1,6 @@
 "use client";
-import { MarketplaceAddress, NFTAddress } from "@/constants/constanst";
-import NFT from "@/contracts/MusicTuneVibe.sol/MusicTuneVibe.json";
-import Market from "@/contracts/TuneVibe.sol/TuneVibe.json";
+import { Market, MarketplaceAddress, NFT, NFTAddress } from "@/constants/constanst";
+
 import {
   BrowserProvider,
   Contract,

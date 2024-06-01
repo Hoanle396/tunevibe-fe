@@ -1,8 +1,9 @@
 "use client";
 
 import Index from "@/components/index/Index";
+import useFee from "@/hooks/use-fee";
 const Music = ({}) => {
-  // const { loading, error, data } = useQuery(LOGIN_QUERY);
+  const { fee, loading } = useFee();
 
   return (
     <Index
