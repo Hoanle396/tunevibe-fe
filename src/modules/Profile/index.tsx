@@ -1,21 +1,47 @@
 "use client";
+import { GET_ME, UPDATE_PROFILE } from "@/@apollo/queries/artist";
 import Avatar from "@/components/Avatar";
 import FormWrapper from "@/components/Form/FormWrapper";
 import TextArea from "@/components/Form/TextArea";
 import TextField from "@/components/Form/TextField";
 import useToast from "@/hooks/use-toast";
-import { cutString } from "@/libs/function";
+import { cutString, getStorage } from "@/libs/function";
+import { useAuthStore } from "@/store/auth-store";
+import { useMutation, useQuery } from "@apollo/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAccount } from "wagmi";
 
 type Props = {};
 
 const Profile = (props: Props) => {
+  const { push } = useRouter();
+  const token = getStorage("token");
+  const { id } = useAuthStore();
+  const [artist, setArtist] = useState<number | undefined>(undefined);
   const { address } = useAccount();
   const { toast, context } = useToast();
-
   const form = useForm({
     mode: "all",
+  });
+
+  const { refetch } = useQuery(GET_ME, {
+    onCompleted: (data) => {
+      form.setValue("name", data?.getMe?.name ?? "");
+      form.setValue("description", data?.getMe?.description ?? "");
+      setArtist(data?.getMe?.id);
+    },
+  });
+
+  const [execute] = useMutation(UPDATE_PROFILE, {
+    onCompleted: () => {
+      refetch();
+    },
+    onError: () => {
+      toast.error("Can't update your profile");
+      refetch();
+    },
   });
 
   const onSubmit = async ({ name, description }: any) => {
@@ -23,8 +49,19 @@ const Profile = (props: Props) => {
       toast.error("Please fill full information");
       return;
     } else {
+      execute({
+        variables: {
+          input: { name, description, userId: String(id), id: artist },
+        },
+      });
     }
   };
+
+  if (!token || !address) {
+    push("/music");
+    return null;
+  }
+
   return (
     <div className="flex w-full flex-col gap-3">
       <div className="flex flex-row items-center gap-3 px-4 py-8 w-full ">

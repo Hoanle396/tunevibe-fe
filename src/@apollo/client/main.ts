@@ -7,4 +7,8 @@ export const client = new ApolloClient({
   headers: {
     Authorization: `Bearer ${getStorage(STORAGE_KEY.TOKEN)}`,
   },
+  defaultOptions: {
+    query: { errorPolicy: "all" },
+    mutate: { errorPolicy: "all" },
+  },
 });

@@ -8,31 +8,28 @@ import { useAccount, useConnect } from "wagmi";
 import { metaMask } from "wagmi/connectors";
 import Button from ".";
 import Avatar from "../Avatar";
-import Loading from "../ui/loading/Loading";
+import { useAuthStore } from "@/store/auth-store";
 
 export const ConnectButton = () => {
   const { address: wallet } = useAccount();
   const { connect } = useConnect();
   const { push } = useRouter();
+  const { login } = useAuthStore();
 
   const path = usePathname();
-
-  const { refetch } = useQuery(LOGIN_WALLET_QUERY, {
+  useQuery(LOGIN_WALLET_QUERY, {
     variables: {
       wallet,
     },
-    onCompleted: ({ data }) => {
+    onCompleted: (data) => {
       setStorage(STORAGE_KEY.TOKEN, data?.loginWallet?.token || "");
+      login(data?.loginWallet?.token ?? "", data?.loginWallet?.user?.id ?? 0);
     },
     onError: ({ graphQLErrors }) => {
       path !== "/register" && push("/register");
     },
     skip: !wallet,
   });
-
-  useEffect(() => {
-    if (wallet) refetch();
-  }, [refetch, wallet]);
 
   if (wallet) {
     return (

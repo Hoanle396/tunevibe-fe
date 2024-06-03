@@ -36,56 +36,11 @@ export const useAuthStore = create<authStoreState>()((set) => ({
       id,
     }));
   },
-  login: async (payload: LoginPayload) => {
-    let status: number = 201;
-    let statusText: string = "You are logged in Sucessfully";
-    let data: string;
-
-    // const res = await GetLogin({
-    //     email: payload.email,
-    //     password: payload.password
-    // })
-
-    // if ( res.status === 201 && res.data ) {
-    //     useAuthStore.getState().LoginHelper(res.data.token, res.data.user)
-    // }
-
-    // if ( res.status !== 201 ) {
-    //     status = res.status;
-    //     statusText = res.error;
-    // }
-
-    return {
-      status,
-      statusText,
-      data,
-    };
-  },
-  Register: async (payload: RegisterPayload) => {
-    let status: number = 201;
-    let statusText: string = "You are registered successfully.";
-    let data: string;
-
-    const res = await Register({
-      email: payload.email,
-      password: payload.password,
-      birthDate: payload.birthDate,
-    });
-
-    if (res.status === 201) {
-      useAuthStore.getState().LoginHelper(res.data.token, res.data.user);
-    }
-
-    if (res.status !== 201) {
-      status = res.status;
-      statusText = res.error;
-    }
-
-    return {
-      status,
-      statusText,
-      data,
-    };
+  login: async (token: string, id: number) => {
+    set(() => ({
+      token,
+      id,
+    }));
   },
   LoginHelper(token: string, user: User) {
     changeAuthLocalStorage(token, encrypt(String(user.id)));

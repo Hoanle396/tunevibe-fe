@@ -2,8 +2,8 @@ interface authStoreState {
   token: string;
   id: number;
   setInitialAuth: (token: string, id: number) => void;
-  login: (payload: LoginPayload) => Promise<StoreResponse<string>>;
-  Register: (payload: RegisterPayload) => Promise<StoreResponse<string>>;
+  login: (token: string, id: number) => void;
+
   LoginHelper: (token: string, user: User) => void;
   logout: () => void;
 }
