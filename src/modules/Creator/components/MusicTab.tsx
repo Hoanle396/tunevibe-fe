@@ -7,18 +7,21 @@ import TextField from "@/components/Form/TextField";
 import useToast from "@/hooks/use-toast";
 import { FCC } from "@/types";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import ImageUploadField from "./ImageUpLoadField";
 import MusicUploadField from "./MusicUploadField";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation as useApollo } from "@apollo/client";
 import { GET_ALBUMS } from "@/@apollo/queries/albums";
+import SelectField from "@/components/Form/SelectField";
+import { CREATE_MUSIC } from "@/@apollo/queries/music";
 
 type Props = {};
 
 const MusicTab: FCC<Props> = (props: Props) => {
   const { toast, context } = useToast();
   const [file, setFile] = useState<File | null>(null);
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [albums, setAlbums] = useState<Album[]>([]);
 
   const form = useForm({});
@@ -48,6 +51,12 @@ const MusicTab: FCC<Props> = (props: Props) => {
     },
   });
 
+  const [execute] = useApollo(CREATE_MUSIC, {
+    onCompleted: () => {
+      toast.success("Success to upload new song");
+    },
+  });
+
   const { mutateAsync: mutatePinIPFS } = useMutation({
     mutationFn: uploadFileToIPFS,
     onSuccess: () => {
@@ -59,19 +68,49 @@ const MusicTab: FCC<Props> = (props: Props) => {
     onMutate: () => {},
   });
 
+  const options = useMemo(
+    () =>
+      albums.map((album) => ({
+        value: album.id,
+        label: album.name,
+      })),
+    [albums]
+  );
+
   const onChangeFile = (file: File) => {
     setFile(file);
     mutate(file);
   };
 
-  const onSubmit = async ({ name, content, price, limit }: any) => {
-    if (!name || !file || !content || !price || !limit) {
+  const onSubmit = async ({ name, content, price, limit, albumId }: any) => {
+    if (
+      !name ||
+      !file ||
+      !content ||
+      !price ||
+      !limit ||
+      !thumbnail ||
+      !albumId
+    ) {
       toast.error("Please fill full information");
       return;
     } else {
       try {
         const { hash } = await mutatePinIPFS(file);
-        console.log({ hash });
+        const { hash: cover } = await mutatePinIPFS(thumbnail);
+        execute({
+          variables: {
+            input: {
+              name,
+              content,
+              limit: +limit,
+              cover,
+              price: +price,
+              hash,
+              albumId: String(albumId),
+            },
+          },
+        });
       } catch (error) {}
     }
   };
@@ -79,17 +118,23 @@ const MusicTab: FCC<Props> = (props: Props) => {
     <FormWrapper methods={form} onSubmit={onSubmit} className="pb-20">
       <h2 className="text-xl font-medium mb-2">Music Upload</h2>
       <div className="py-4 max-w-lg mx-auto flex flex-col gap-4">
+        <SelectField
+          name="albumId"
+          label="Select Album"
+          placeholder="Select Album"
+          options={options}
+        />
         <TextField
           name="name"
           label="Enter name of the music"
           placeholder="Enter name of the music"
         />
-        <MusicUploadField name="music" onToggle={onChangeFile} />
         <ImageUploadField
           name="thumbnail"
           label="Thumbnail Image"
-          onToggle={() => {}}
+          onToggle={(file) => setThumbnail(file)}
         />
+        <MusicUploadField name="music" onToggle={onChangeFile} />
         <TextArea name="content" label="Lyrics" loading={isPending} />
         <TextField
           name="price"

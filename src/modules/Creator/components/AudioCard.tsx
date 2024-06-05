@@ -33,8 +33,7 @@ const AudioCard: FCC<Props> = ({ children, src }) => {
             width={300}
             height={100}
           />
-          <audio ref={ref} className="hidden">
-            <source src={src} type="audio/mpeg" />
+          <audio ref={ref} src={src}  className="hidden">
             Your browser does not support the audio element.
           </audio>
           <div

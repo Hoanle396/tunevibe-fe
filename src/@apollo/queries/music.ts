@@ -20,3 +20,12 @@ export const GET_MUSIC = gql`
     }
   }
 `;
+
+export const CREATE_MUSIC = gql`
+  mutation createMusic($input: CreateMusicInput!) {
+    create(createMusicInput: $input) {
+      name
+      id
+    }
+  }
+`;
