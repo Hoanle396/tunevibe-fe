@@ -1,65 +1,70 @@
 "use client";
+import { CREATE_ALBUM } from "@/@apollo/queries/albums";
+import { GET_ME } from "@/@apollo/queries/artist";
 import { uploadFileToIPFS } from "@/apis/ipfs";
-import { uploadTranscript } from "@/apis/transcript";
 import FormWrapper from "@/components/Form/FormWrapper";
-import TextArea from "@/components/Form/TextArea";
 import TextField from "@/components/Form/TextField";
 import useToast from "@/hooks/use-toast";
 import { FCC } from "@/types";
+import { useMutation as useApollo, useQuery } from "@apollo/client";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ImageUploadField from "./ImageUpLoadField";
-import MusicUploadField from "./MusicUploadField";
 
 type Props = {};
 
 const AlbumTab: FCC<Props> = (props: Props) => {
   const { toast, context } = useToast();
+  const [artist, setArtist] = useState(0);
   const [file, setFile] = useState<File | null>(null);
 
   const form = useForm({
     mode: "all",
   });
-  const { setValue } = form;
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: uploadTranscript,
-    onSuccess: ({ data }: any) => {
-      setValue("content", data);
+  useQuery(GET_ME, {
+    onCompleted: (data) => {
+      setArtist(data?.getMe?.id ?? 0);
     },
     onError: () => {
-      toast.error("Error went detect lyrics");
-    },
-    onMutate: () => {
-      setValue("content", "");
+      toast.error("Please create your profile first!");
     },
   });
 
-  const { mutateAsync: mutatePinIPFS } = useMutation({
-    mutationFn: uploadFileToIPFS,
-    onSuccess: () => {
-      toast.success("Successfully upload to ipfs");
+  const [execute, { loading }] = useApollo(CREATE_ALBUM, {
+    onCompleted: () => {
+      toast.success("Create Album successfully!");
+      form.reset();
     },
     onError: () => {
-      toast.error("Error went upload file");
+      toast.error("Can't create your album!");
     },
-    onMutate: () => {},
+  });
+
+  const { mutateAsync: mutatePinIPFS, isPending } = useMutation({
+    mutationFn: uploadFileToIPFS,
   });
 
   const onChangeFile = (file: File) => {
     setFile(file);
-    mutate(file);
   };
 
-  const onSubmit = async ({ name, content, price, limit }: any) => {
-    if (!name || !file || !content || !price || !limit) {
+  const onSubmit = async ({ name }: any) => {
+    if (!name || !file) {
       toast.error("Please fill full information");
       return;
     } else {
       try {
         const { hash } = await mutatePinIPFS(file);
-        console.log({ hash });
+        execute({
+          variables: {
+            input: {
+              artist,
+              name,
+              cover: hash,
+            },
+          },
+        });
       } catch (error) {}
     }
   };
@@ -75,10 +80,10 @@ const AlbumTab: FCC<Props> = (props: Props) => {
         <ImageUploadField
           name="thumbnail"
           label="Thumbnail Image"
-          onToggle={() => {}}
+          onToggle={onChangeFile}
         />
         <button
-          disabled={isPending}
+          disabled={loading || isPending}
           type="submit"
           className="flex disabled:bg-gray-400 w-full h-14 justify-center items-center border rounded-full text-white hover:bg-[#0d152a50] hover:ring-2 hover:ring-white"
         >

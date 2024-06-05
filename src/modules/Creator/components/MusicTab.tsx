@@ -11,14 +11,29 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ImageUploadField from "./ImageUpLoadField";
 import MusicUploadField from "./MusicUploadField";
+import { useQuery } from "@apollo/client";
+import { GET_ALBUMS } from "@/@apollo/queries/albums";
 
 type Props = {};
 
 const MusicTab: FCC<Props> = (props: Props) => {
   const { toast, context } = useToast();
   const [file, setFile] = useState<File | null>(null);
+  const [albums, setAlbums] = useState<Album[]>([]);
 
   const form = useForm({});
+
+  useQuery(GET_ALBUMS, {
+    onCompleted: (data) => {
+      setAlbums(data?.getAlbums?.data ?? []);
+    },
+    variables: {
+      pagination: {
+        page: 1,
+        limit: 5,
+      },
+    },
+  });
 
   const { mutate, isPending } = useMutation({
     mutationFn: uploadTranscript,

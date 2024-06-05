@@ -10,11 +10,13 @@ export const GET_ALBUMS = gql`
         totalPages
       }
       data {
+        id
         name
         cover
-        musics {
+        artist {
           name
-          hash
+          description
+          id
         }
       }
     }

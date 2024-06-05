@@ -6,6 +6,7 @@ import { useAccount } from "wagmi";
 import AlbumsTab from "./components/AlbumsTab";
 import MusicTab from "./components/MusicTab";
 import { Tab, Tabs } from "./components/Tabs";
+import Albums from "./components/Albums";
 type Props = {};
 
 const Creator = (props: Props) => {
@@ -21,9 +22,7 @@ const Creator = (props: Props) => {
 
   return (
     <div className="flex flex-col w-full">
-      {/* <div className="w-fit max-w-md">
-        <AudioCard />
-      </div> */}
+      <Albums />
       <Tabs>
         <Tab label="Music">
           <MusicTab />

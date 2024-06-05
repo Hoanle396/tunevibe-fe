@@ -17,6 +17,30 @@ interface Artist {
   musicCount?: number;
 }
 
+interface ListAlbum {
+  meta: Meta
+  data: Album[]
+}
+
+interface Meta {
+  totalItems: number
+  limit: number
+  page: number
+  totalPages: string
+}
+
+interface Album {
+  id: number
+  name: string
+  cover: string
+  artist: ArtistAlbum
+}
+
+interface ArtistAlbum {
+  name: string
+  description: string
+  id: number
+}
 interface User extends BaseInfo {
   userName: string;
   password: string;

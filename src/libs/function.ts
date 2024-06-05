@@ -1,3 +1,5 @@
+import { IPFS_URL } from "@/constants/constanst";
+
 export const cutString = (
   str?: string,
   start: number = 5,
@@ -29,4 +31,9 @@ export const getStorage = (key: string): string => {
 
 export const setStorage = (key: string, value: string) => {
   return localStorage.setItem(key, value);
+};
+
+export const IPFS = (hash: string): string => {
+  if (IPFS_URL.charAt(IPFS_URL.length - 1) == "/") return IPFS_URL + hash;
+  return IPFS_URL + "/" + hash;
 };
