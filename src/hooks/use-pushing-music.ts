@@ -1,37 +1,36 @@
 import { useCallback, useMemo } from "react";
 
+import { MessageInstance } from "antd/es/message/interface";
 import { ethers } from "ethers";
-import useContract from "./use-contract";
-import useToast from "./use-toast";
 import useFee from "./use-fee";
 
-const usePushingMusic = () => {
-  const { toast, context } = useToast();
-  const { contract } = useContract();
-  const { fee, loading } = useFee();
+const usePushingMusic = (toast?: MessageInstance) => {
+  const { fee, contract } = useFee();
+  console.log({ contract, fee });
 
-  const createSale = useCallback(
-    async (tokenId: string, price: string, amount: number) => {
+  const pushing = useCallback(
+    async (tokenId: number, amount: number, price: string = "0") => {
       try {
-        const unitPrice = ethers.parseEther(price);
+        const unitPrice = ethers.parseEther(price).toString();
+
         let transaction = await contract?.MakeMusicNFT(
           tokenId,
           unitPrice,
           amount,
           {
-            value: !loading && ethers.parseEther(fee),
+            value: fee.toString(),
           }
         );
         await transaction.wait();
-        toast.success("Your NFT has been listed.");
+        toast && toast.success("Your NFT has been listed.");
       } catch (e) {
         console.error(e);
-        toast.error("Error went execute transaction");
+        toast && toast.error("Error went execute transaction");
       }
     },
-    [contract, fee, loading, toast]
+    [contract, fee, toast]
   );
-  return useMemo(() => ({ createSale, context }), [createSale, context]);
+  return useMemo(() => ({ pushing }), [pushing]);
 };
 
 export default usePushingMusic;

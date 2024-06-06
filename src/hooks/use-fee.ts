@@ -12,9 +12,7 @@ const useFee = () => {
     try {
       setLoading(true);
       const data = await contract.getFunction("getListingFee").call(null);
-      const price = ethers.formatEther(data.toString());
-
-      setFee(price);
+      setFee(data.toString());
     } catch (error) {
       console.log(error);
     } finally {

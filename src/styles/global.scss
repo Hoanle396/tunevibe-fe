@@ -259,11 +259,12 @@ body {
 .ant-rate-star.ant-rate-star-half .ant-rate-star-second {
   color: lightyellow;
 }
+
 .ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector,
-.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
   border: none;
-    background: transparent;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+  background: transparent;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
 }

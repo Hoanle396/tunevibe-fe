@@ -15,6 +15,8 @@ import { useQuery, useMutation as useApollo } from "@apollo/client";
 import { GET_ALBUMS } from "@/@apollo/queries/albums";
 import SelectField from "@/components/Form/SelectField";
 import { CREATE_MUSIC } from "@/@apollo/queries/music";
+import useMint from "@/hooks/use-mint";
+import usePushingMusic from "@/hooks/use-pushing-music";
 
 type Props = {};
 
@@ -25,6 +27,8 @@ const MusicTab: FCC<Props> = (props: Props) => {
   const [albums, setAlbums] = useState<Album[]>([]);
 
   const form = useForm({});
+  const { mint } = useMint(toast);
+  const { pushing } = usePushingMusic();
 
   useQuery(GET_ALBUMS, {
     onCompleted: (data) => {
@@ -98,7 +102,10 @@ const MusicTab: FCC<Props> = (props: Props) => {
       try {
         const { hash } = await mutatePinIPFS(file);
         const { hash: cover } = await mutatePinIPFS(thumbnail);
-        execute({
+        const { id } = await mint(hash, limit);
+
+        await pushing(Number(id), Number(limit), price);
+        await execute({
           variables: {
             input: {
               name,
@@ -111,7 +118,10 @@ const MusicTab: FCC<Props> = (props: Props) => {
             },
           },
         });
-      } catch (error) {}
+        form.reset();
+      } catch (error) {
+        console.log({ error });
+      }
     }
   };
   return (
