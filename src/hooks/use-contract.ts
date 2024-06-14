@@ -1,5 +1,10 @@
 "use client";
-import { Market, MarketplaceAddress, NFT, NFTAddress } from "@/constants/constanst";
+import {
+  Market,
+  MarketplaceAddress,
+  NFT,
+  NFTAddress,
+} from "@/constants/constanst";
 
 import {
   BrowserProvider,
@@ -33,6 +38,7 @@ const useContract = (type: "market" | "nft" = "market") => {
         type == "market" ? Market.abi : NFT.abi,
         walletClient ? walletClientToSigner(walletClient) : undefined
       ),
+      signer: walletClient ? walletClientToSigner(walletClient) : undefined,
     }),
     [type, walletClient]
   );

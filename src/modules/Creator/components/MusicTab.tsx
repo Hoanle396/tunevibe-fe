@@ -102,9 +102,8 @@ const MusicTab: FCC<Props> = (props: Props) => {
       try {
         const { hash } = await mutatePinIPFS(file);
         const { hash: cover } = await mutatePinIPFS(thumbnail);
-        const { id } = await mint(hash, limit);
+        await mint(hash, Number(limit), price);
 
-        await pushing(Number(id), Number(limit), price);
         await execute({
           variables: {
             input: {

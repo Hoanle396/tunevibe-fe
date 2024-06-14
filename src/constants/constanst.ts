@@ -12,8 +12,8 @@ export const STORAGE_KEY = {
 export const MAIN_ROUTE = ["/market", "/pricing", "/register", "/"];
 export const NO_PLAY_ROUTE = ["/creator", "/profile"];
 
-export const MarketplaceAddress = "0xf544bD63E4954fEdf0B57717Dd2CB1C761fb15F6";
-export const NFTAddress = "0xC29feEd294AD6aeBDcd263E31A447CEA60E005c9";
+export const MarketplaceAddress = "0x15f485d943832e0A33f23f6010800e491250ac24";
+export const NFTAddress = "0x15f485d943832e0A33f23f6010800e491250ac24";
 
 export { default as NFT } from "@/contracts/MusicTuneVibe.sol/MusicTuneVibe.json";
-export { default as Market } from "@/contracts/TuneVibe.sol/TuneVibe.json";
+export { default as Market } from "@/contracts/MusicTuneVibe.sol/MusicTuneVibe.json";

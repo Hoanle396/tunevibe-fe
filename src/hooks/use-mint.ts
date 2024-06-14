@@ -2,13 +2,19 @@ import { useCallback, useMemo } from "react";
 
 import { MessageInstance } from "antd/es/message/interface";
 import useContract from "./use-contract";
+import useFee from "./use-fee";
+import { ethers } from "ethers";
 
 const useMint = (toast?: MessageInstance) => {
-  const { contract } = useContract("nft");
+  const { fee, contract } = useFee();
+
   const mint = useCallback(
-    async (url: string, amount: number) => {
+    async (url: string, amount: number, price: string = "0") => {
       try {
-        const tx = await contract?.safeMint(url, amount);
+        const unitPrice = ethers.parseEther(price);
+        const tx = await contract?.safeMint(url, amount, unitPrice, {
+          value: fee,
+        });
         await tx.wait();
         let transaction = await contract?.tokenByHash(url);
         toast && toast.success("Your NFT has been create.");
@@ -20,7 +26,7 @@ const useMint = (toast?: MessageInstance) => {
         return { id: undefined };
       }
     },
-    [contract, toast]
+    [contract, fee, toast]
   );
   return useMemo(() => ({ mint }), [mint]);
 };
