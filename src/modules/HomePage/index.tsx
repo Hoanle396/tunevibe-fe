@@ -9,10 +9,6 @@ import IntroSection from "./IntroSection";
 import SlideSection from "./SlideSection";
 
 export const Home = () => {
-  const { contract } = useContract();
-
-  console.log({ contract });
-
   return (
     <div>
       <HeroSection />

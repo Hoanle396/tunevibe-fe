@@ -1,11 +1,52 @@
+interface MusicList {
+  __typename: string
+  meta: Meta
+  data: Music[]
+}
+
+interface Meta {
+  __typename: string
+  page: number
+  totalPages: number
+  totalItems: number
+}
+
 interface Music {
-  id: number;
-  name: string;
-  src: string;
-  coverImage: string;
-  avatar: string;
-  artist: string;
-  playedCount: number;
+  __typename: string
+  id: number
+  name: string
+  content: string
+  hash: string
+  cover: string
+  price: number
+  limit: number
+  play: Play
+  album: Album
+}
+
+interface Play {
+  __typename: string
+  count: number
+}
+
+interface Album {
+  __typename: string
+  id: number
+  name: string
+  cover: string
+  artist: mArtist
+}
+
+interface mArtist {
+  __typename: string
+  user: User
+  description: string
+  name: string
+}
+
+interface User {
+  __typename: string
+  wallet: string
 }
 
 interface Artist {
@@ -29,18 +70,6 @@ interface Meta {
   totalPages: string
 }
 
-interface Album {
-  id: number
-  name: string
-  cover: string
-  artist: ArtistAlbum
-}
-
-interface ArtistAlbum {
-  name: string
-  description: string
-  id: number
-}
 interface User extends BaseInfo {
   userName: string;
   password: string;

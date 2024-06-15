@@ -5,6 +5,7 @@ import useNumber from "@/hooks/use-number";
 import MainButton from "@/components/ui/button/MainButton";
 
 import styles from "./IndexTrendsSlide.module.scss";
+import { IPFS } from "@/libs/function";
 
 const IndexTrendsSlide = ({
   trendInfo,
@@ -15,7 +16,7 @@ const IndexTrendsSlide = ({
   onMusicClick: (music: Music) => void;
   music: Music;
 }) => {
-  const convertedPlayedCount = useNumber(trendInfo.playedCount);
+  const convertedPlayedCount = useNumber(trendInfo.play.count);
 
   const musicClickHandler = () => {
     onMusicClick(trendInfo);
@@ -25,7 +26,7 @@ const IndexTrendsSlide = ({
     <div className={styles.slide}>
       <Image
         className={styles.img}
-        src={trendInfo.coverImage}
+        src={IPFS(trendInfo.cover)}
         width={1920}
         height={1080}
         loading="eager"
@@ -35,7 +36,7 @@ const IndexTrendsSlide = ({
         <span className={styles.title}>Trending New Hits</span>
         <span className={styles.name}>{trendInfo.name}</span>
         <div className={styles.wrapper}>
-          <span className={styles.artist}>{trendInfo.artist}</span>
+          <span className={styles.artist}>{trendInfo.album.artist.name}</span>
           <span className={styles.played}>{convertedPlayedCount}</span>
         </div>
         <div className={styles.action}>

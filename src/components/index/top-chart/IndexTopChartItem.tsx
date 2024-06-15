@@ -10,6 +10,7 @@ import styles from "./IndexTopChartItem.module.scss";
 import React from "react";
 import { CiCircleMinus } from "react-icons/ci";
 import { MdPauseCircle, MdPlayCircle } from "react-icons/md";
+import { IPFS } from "@/libs/function";
 
 const IndexTopChartItem = ({
   musicData,
@@ -31,7 +32,7 @@ const IndexTopChartItem = ({
   ]);
 
   const { durationSeconds, formattedDuration, output } = useAudioDuration(
-    musicData.src
+    IPFS(musicData.hash)
   );
   const number = index < 10 ? `0${index}` : `${index}`;
   const currentMusic = music && music.id === musicData.id;
@@ -59,7 +60,7 @@ const IndexTopChartItem = ({
         <span className={styles.number}>{number}</span>
         <Image
           className={styles.img}
-          src={musicData.avatar}
+          src={IPFS(musicData.cover)}
           width={90}
           height={70}
           loading="lazy"
@@ -68,7 +69,7 @@ const IndexTopChartItem = ({
 
         <Link href="/">
           <h5 className={styles.title}>{musicData.name}</h5>
-          <h6 className={styles.text}>{musicData.artist}</h6>
+          <h6 className={styles.text}>{musicData.album.artist.name}</h6>
         </Link>
 
         <span className={styles.time}>

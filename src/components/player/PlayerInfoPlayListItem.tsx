@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import styles from "./PlayerInfoPlayListItem.module.scss";
+import { IPFS } from "@/libs/function";
 
 const PlayerInfoPlayListItem = ({
   musicData,
@@ -15,7 +16,7 @@ const PlayerInfoPlayListItem = ({
     <div className={classes}>
       <Image
         className={styles.img}
-        src={musicData.avatar}
+        src={IPFS(musicData.cover)}
         width={50}
         height={50}
         loading="lazy"
@@ -23,7 +24,7 @@ const PlayerInfoPlayListItem = ({
       />
       <div>
         <span className={styles.title}>{musicData.name}</span>
-        <span className={styles.text}>{musicData.artist}</span>
+        <span className={styles.text}>{musicData.album.artist.name}</span>
       </div>
     </div>
   );

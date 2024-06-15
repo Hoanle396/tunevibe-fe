@@ -14,6 +14,7 @@ import {
 } from "react-icons/ci";
 import { MdPauseCircle, MdPlayCircle } from "react-icons/md";
 import styles from "./PlayerControl.module.scss";
+import { IPFS } from "@/libs/function";
 
 const PlayerControl = ({ music }: { music: Music | null }) => {
   const [
@@ -127,7 +128,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
   useEffect(() => {
     if (music) {
       if (ref.current) {
-        ref.current.src = music.src;
+        ref.current.src = IPFS(music.hash);
         ref.current.currentTime = currentTime;
         ref.current.volume = volume;
 
@@ -279,7 +280,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
             onTimeUpdate={musicTimeUpdateHandler}
             onLoadedMetadata={metadataLoadHandler}
           >
-            <source src={music.src} type="audio/mpeg" />
+            <source src={IPFS(music.hash)} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         )}
