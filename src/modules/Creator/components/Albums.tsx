@@ -25,6 +25,7 @@ const Albums: FCC<Props> = (props: Props) => {
       {albums &&
         albums.map((album) => (
           <AlbumCard
+            __typename="Album"
             key={album.cover}
             name={album.name}
             cover={album.cover}
