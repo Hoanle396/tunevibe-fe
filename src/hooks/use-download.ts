@@ -1,26 +1,30 @@
 import { useCallback, useMemo } from "react";
 
-import useContract from "./use-contract";
-import useToast from "./use-toast";
+import { MessageInstance } from "antd/es/message/interface";
+import useFee from "./use-fee";
 
-const useDownload = () => {
-  const { toast, context } = useToast();
-  const { contract } = useContract();
-  const mint = useCallback(
+const useDownload = (toast?: MessageInstance) => {
+  const { contract } = useFee();
+
+  const buy = useCallback(
     async (url: string, amount: number) => {
       try {
-        let transaction = await contract?.buy(url, amount);
+        let tokenId = await contract?.tokenByHash(url);
+
+        let transaction = await contract?.buyNFT(tokenId[0], amount, {
+          value: tokenId[3],
+        });
         await transaction.wait();
-        toast.success("Your NFT has been create.");
-        return transaction
+        toast?.success("Your Music already to download now .");
+        return transaction;
       } catch (e) {
         console.error(e);
-        toast.error("Error went execute transaction");
+        toast?.error("Error went execute transaction");
       }
     },
     [contract, toast]
   );
-  return useMemo(() => ({ mint, context }), [mint, context]);
+  return useMemo(() => ({ buy }), [buy]);
 };
 
 export default useDownload;

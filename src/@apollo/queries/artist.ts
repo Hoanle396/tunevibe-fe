@@ -18,3 +18,49 @@ export const UPDATE_PROFILE = gql`
     }
   }
 `;
+
+export const GET_ARTISTS = gql`
+  {
+    getArtists(pagination: {}) {
+      data {
+        name
+        createdAt
+        updatedAt
+        description
+        user {
+          email
+          wallet
+        }
+      }
+      meta {
+        totalPages
+        limit
+        page
+        totalItems
+      }
+    }
+  }
+`;
+
+export const GET_ARTIST = gql`
+  {
+    getArtists(id) {
+      data {
+        name
+        createdAt
+        updatedAt
+        description
+        user {
+          email
+          wallet
+        }
+      }
+      meta {
+        totalPages
+        limit
+        page
+        totalItems
+      }
+    }
+  }
+`;
