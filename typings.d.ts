@@ -1,52 +1,57 @@
 interface MusicList {
-  __typename: string
-  meta: Meta
-  data: Music[]
+  __typename: string;
+  meta: Meta;
+  data: Music[];
 }
 
-interface Meta {
-  __typename: string
-  page: number
-  totalPages: number
-  totalItems: number
+interface TransactionList {
+  __typename: string;
+  meta: Meta;
+  data: Transaction[];
+}
+
+interface Transaction {
+  id: number;
+  user: User;
+  music: Music;
 }
 
 interface Music {
-  __typename: string
-  id: number
-  name: string
-  content: string
-  hash: string
-  cover: string
-  price: number
-  limit: number
-  play: Play
-  album: Album
+  __typename: string;
+  id: number;
+  name: string;
+  content: string;
+  hash: string;
+  cover: string;
+  price: number;
+  limit: number;
+  play: Play;
+  album: Album;
 }
 
 interface Play {
-  __typename: string
-  count: number
+  __typename: string;
+  count: number;
 }
 
 interface Album {
-  __typename: string
-  id: number
-  name: string
-  cover: string
-  artist: mArtist
+  __typename: string;
+  id: number;
+  name: string;
+  cover: string;
+  artist: mArtist;
 }
 
 interface mArtist {
-  __typename: string
-  user: User
-  description: string
-  name: string
+  __typename: string;
+  user: User;
+  description: string;
+  name: string;
 }
 
 interface User {
-  __typename: string
-  wallet: string
+  __typename: string;
+  wallet: string;
 }
 
 interface Artist {
@@ -59,15 +64,15 @@ interface Artist {
 }
 
 interface ListAlbum {
-  meta: Meta
-  data: Album[]
+  meta: Meta;
+  data: Album[];
 }
 
 interface Meta {
-  totalItems: number
-  limit: number
-  page: number
-  totalPages: string
+  totalItems: number;
+  limit: number;
+  page: number;
+  totalPages: string;
 }
 
 interface User extends BaseInfo {
@@ -136,6 +141,6 @@ type ButtonType =
   | "secondary-flat"
   | "danger";
 
-  interface Window {
-    ethereum: any
-  }
+interface Window {
+  ethereum: any;
+}

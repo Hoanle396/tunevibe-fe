@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from "react";
 
 import { MessageInstance } from "antd/es/message/interface";
-import useContract from "./use-contract";
-import useFee from "./use-fee";
 import { ethers } from "ethers";
+import useFee from "./use-fee";
 
 const useMint = (toast?: MessageInstance) => {
   const { fee, contract } = useFee();

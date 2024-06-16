@@ -43,8 +43,8 @@ export const GET_ARTISTS = gql`
 `;
 
 export const GET_ARTIST = gql`
-  {
-    getArtists(id) {
+  query getArtist($id: String!) {
+    getArtist(id: $id) {
       data {
         name
         createdAt

@@ -16,7 +16,7 @@ const TextArea: FC<Props> = ({
   defaultValue = "",
   label,
   className,
-  rows = 10,
+  rows = 9,
   loading = false,
   ...props
 }) => {

@@ -6,7 +6,6 @@ import useFee from "./use-fee";
 
 const usePushingMusic = (toast?: MessageInstance) => {
   const { fee, contract } = useFee();
-  console.log({ contract, fee });
 
   const pushing = useCallback(
     async (tokenId: number, amount: number, price: string = "0") => {

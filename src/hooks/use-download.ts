@@ -5,7 +5,6 @@ import useFee from "./use-fee";
 
 const useDownload = (toast?: MessageInstance) => {
   const { contract } = useFee();
-
   const buy = useCallback(
     async (url: string, amount: number) => {
       try {

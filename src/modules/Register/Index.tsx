@@ -27,8 +27,6 @@ const Register = () => {
   });
   const form = useForm({});
   const onSubmit = ({ email, password }: any) => {
-    console.log({ wallet, email, password });
-
     if (!wallet || !email || !password) {
       toast.error("Please enter your information");
       return;

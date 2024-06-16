@@ -1,14 +1,8 @@
 "use client";
 import { FCC } from "@/types";
-import Image from "next/image";
 import type { BaseSyntheticEvent } from "react";
 import { useRef } from "react";
-import {
-  Control,
-  Controller,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { BsFillFileMusicFill } from "react-icons/bs";
 import AudioCard from "./AudioCard";
 
@@ -55,6 +49,12 @@ const MusicUploadField: FCC<Props> = ({
       name={name}
       render={({ field, fieldState: { error } }) => (
         <div className="w-full">
+          <label
+            htmlFor={name}
+            className="block mb-2 text-lg font-medium text-white"
+          >
+            {label}
+          </label>
           <div className="w-full max-w-full h-52 flex flex-col gap-8 items-center justify-center rounded-2xl border-[2px] border-white border-dashed">
             {field.value ? (
               <div className="w-full h-full p-1 shadow-[rgba(149,157,165,0.2)0px8px24px] relative">
@@ -84,9 +84,6 @@ const MusicUploadField: FCC<Props> = ({
                 </span>
                 <p className="text-md font-medium lg:text-lg">
                   Accept wma, mp3, wav, flac, m4a
-                </p>
-                <p className="text-md font-medium lg:text-lg">
-                  Or choose file here
                 </p>
                 <button
                   type="button"

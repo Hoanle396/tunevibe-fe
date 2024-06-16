@@ -42,3 +42,51 @@ export const CREATE_MUSIC = gql`
     }
   }
 `;
+
+export const CREATE_TRANSACTION = gql`
+  mutation createTransaction($input: UpdateTransaction!) {
+    createTransaction(input: $input) {
+      status
+    }
+  }
+`;
+
+export const GET_TRANSACTION = gql`
+  {
+    getTransaction(pagination: {}) {
+      meta {
+        limit
+        page
+        totalPages
+        totalItems
+      }
+      data {
+        id
+        user {
+          wallet
+        }
+        music {
+          id
+          name
+          hash
+          cover
+          limit
+          cover
+          play {
+            count
+          }
+          album {
+            name
+            cover
+            artist {
+              user {
+                wallet
+              }
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,22 +1,23 @@
 "use client";
+import { GET_ALBUMS } from "@/@apollo/queries/albums";
+import { CREATE_MUSIC } from "@/@apollo/queries/music";
 import { uploadFileToIPFS } from "@/apis/ipfs";
 import { uploadTranscript } from "@/apis/transcript";
 import FormWrapper from "@/components/Form/FormWrapper";
+import SelectField from "@/components/Form/SelectField";
 import TextArea from "@/components/Form/TextArea";
 import TextField from "@/components/Form/TextField";
+import useMint from "@/hooks/use-mint";
+import usePushingMusic from "@/hooks/use-pushing-music";
 import useToast from "@/hooks/use-toast";
 import { FCC } from "@/types";
+import { useMutation as useApollo, useQuery } from "@apollo/client";
 import { useMutation } from "@tanstack/react-query";
+import { Col, Row } from "antd";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import ImageUploadField from "./ImageUpLoadField";
 import MusicUploadField from "./MusicUploadField";
-import { useQuery, useMutation as useApollo } from "@apollo/client";
-import { GET_ALBUMS } from "@/@apollo/queries/albums";
-import SelectField from "@/components/Form/SelectField";
-import { CREATE_MUSIC } from "@/@apollo/queries/music";
-import useMint from "@/hooks/use-mint";
-import usePushingMusic from "@/hooks/use-pushing-music";
 
 type Props = {};
 
@@ -126,45 +127,57 @@ const MusicTab: FCC<Props> = (props: Props) => {
   return (
     <FormWrapper methods={form} onSubmit={onSubmit} className="pb-20">
       <h2 className="text-xl font-medium mb-2">Music Upload</h2>
-      <div className="py-4 max-w-lg mx-auto flex flex-col gap-4">
-        <SelectField
-          name="albumId"
-          label="Select Album"
-          placeholder="Select Album"
-          options={options}
-        />
-        <TextField
-          name="name"
-          label="Enter name of the music"
-          placeholder="Enter name of the music"
-        />
-        <ImageUploadField
-          name="thumbnail"
-          label="Thumbnail Image"
-          onToggle={(file) => setThumbnail(file)}
-        />
-        <MusicUploadField name="music" onToggle={onChangeFile} />
-        <TextArea name="content" label="Lyrics" loading={isPending} />
-        <TextField
-          name="price"
-          label="Price to download"
-          type="number"
-          placeholder="10 BNB"
-        />
-        <TextField
-          name="limit"
-          label="Limit download"
-          type="number"
-          placeholder="10"
-        />
-        <button
-          disabled={isPending}
-          type="submit"
-          className="flex disabled:bg-gray-400 w-full h-14 justify-center items-center border rounded-full text-white hover:bg-[#0d152a50] hover:ring-2 hover:ring-white"
-        >
-          Mint and Sale Now
-        </button>
-      </div>
+      <Row
+        gutter={[16, 24]}
+        className="py-4 gap-10 w-full mx-auto justify-center"
+      >
+        <Col span={11} className="flex flex-col gap-4">
+          <SelectField
+            name="albumId"
+            label="Select Album"
+            placeholder="Select Album"
+            options={options}
+          />
+
+          <MusicUploadField
+            name="music"
+            label="Sounds"
+            onToggle={onChangeFile}
+          />
+          <TextArea name="content" label="Lyrics" loading={isPending} />
+        </Col>
+        <Col span={11} className="flex flex-col gap-4">
+          <TextField
+            name="name"
+            label="Enter name of the music"
+            placeholder="Enter name of the music"
+          />
+          <ImageUploadField
+            name="thumbnail"
+            label="Thumbnail Image"
+            onToggle={(file) => setThumbnail(file)}
+          />
+          <TextField
+            name="price"
+            label="Price to download"
+            type="number"
+            placeholder="10 BNB"
+          />
+          <TextField
+            name="limit"
+            label="Limit download"
+            type="number"
+            placeholder="10"
+          />
+          <button
+            disabled={isPending}
+            type="submit"
+            className="flex disabled:bg-gray-400 w-full h-14 justify-center items-center border rounded-full text-white hover:bg-[#0d152a50] hover:ring-2 hover:ring-white"
+          >
+            Mint and Sale Now
+          </button>
+        </Col>
+      </Row>
       {context}
     </FormWrapper>
   );

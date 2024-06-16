@@ -52,9 +52,15 @@ const ImageUploadField: FCC<Props> = ({
       name={name}
       render={({ field, fieldState: { error } }) => (
         <div className="w-full">
+          <label
+            htmlFor={name}
+            className="block mb-2 text-lg font-medium text-white"
+          >
+            {label}
+          </label>
           <div
             className={`w-full max-w-full flex flex-col gap-8 items-center justify-center rounded-2xl border-[2px] border-white border-dashed  
-            ${square ? "aspect-square" : "h-64"}`}
+            ${square ? "aspect-square" : "h-56"}`}
           >
             {field.value ? (
               <div className="w-full h-full">
@@ -89,9 +95,6 @@ const ImageUploadField: FCC<Props> = ({
                 </span>
                 <p className="text-md font-medium lg:text-lg">
                   Accept png, jpg, svg, webp
-                </p>
-                <p className="text-md font-medium lg:text-lg">
-                  Or choose file here
                 </p>
                 <button
                   type="button"

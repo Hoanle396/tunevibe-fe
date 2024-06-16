@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
 import { message } from "antd";
+import { useState } from "react";
 
 import { useUserStore } from "@/store/user-store";
 // import GetMusic from "@/services/server/musics/GetMusic"
@@ -23,8 +23,6 @@ const FavoriteProvider = ({
     state.setFavorite,
     state.favorite,
   ]);
-
-  // console.log(userInfo)
 
   const [messageApi, contextHolder] = message.useMessage();
 

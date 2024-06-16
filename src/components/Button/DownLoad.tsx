@@ -1,6 +1,8 @@
+import { CREATE_TRANSACTION } from "@/@apollo/queries/music";
+import { Transfer } from "@/constants/constanst";
 import useDownload from "@/hooks/use-download";
 import { FCC } from "@/types";
-import React from "react";
+import { useMutation } from "@apollo/client";
 import { TbDownload } from "react-icons/tb";
 
 type Props = {
@@ -9,10 +11,20 @@ type Props = {
 
 const DownLoad: FCC<Props> = ({ music }) => {
   const { buy } = useDownload();
+  const [execute] = useMutation(CREATE_TRANSACTION);
   const onDownLoad = async () => {
     if (music) {
       try {
         await buy(music.hash, 1);
+        await execute({
+          variables: {
+            input: {
+              musicId: music.id,
+              price: music.price,
+              status: Transfer.Hold,
+            },
+          },
+        });
       } catch (error) {
         console.log(error);
       }
