@@ -5,3 +5,14 @@ export interface IResponseTranscriptMusic {
   data: string;
   status: number;
 }
+export interface Result {
+  data: Data[]
+  no: Data[]
+  status: string
+}
+
+export interface Data {
+  musicId: number
+  prediction: number
+  userId: number
+}

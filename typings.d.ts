@@ -40,6 +40,7 @@ interface Album {
   name: string;
   cover: string;
   artist: mArtist;
+  createdAt?: string;
 }
 
 interface mArtist {

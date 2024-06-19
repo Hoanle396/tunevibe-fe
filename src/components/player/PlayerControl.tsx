@@ -14,7 +14,7 @@ import {
 } from "react-icons/ci";
 import { MdPauseCircle, MdPlayCircle } from "react-icons/md";
 import styles from "./PlayerControl.module.scss";
-import { IPFS } from "@/libs/function";
+import { IPFS, getStorage, setStorage } from "@/libs/function";
 
 const PlayerControl = ({ music }: { music: Music | null }) => {
   const [
@@ -122,7 +122,7 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
     return () => {
       document.removeEventListener("keydown", handler);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying, currentTime, volume, disableKeydown]);
 
   useEffect(() => {
@@ -139,13 +139,22 @@ const PlayerControl = ({ music }: { music: Music | null }) => {
         }
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [music, isPlaying, volume]);
 
   const musicTimeUpdateHandler = () => {
-    if (ref.current && ref.current.currentTime === duration)
+    if (ref.current && ref.current.currentTime === duration) {
+      const recent = getStorage("recent", "[]");
+      const data: any[] = (JSON.parse(recent) ?? []).slice(0, 10);
+      if (!data.find((item) => item.id === music?.id)) {
+        data.unshift(music);
+      }
+      const uniqueArray = Array.from(new Set(data));
+      console.log({ uniqueArray });
+
+      setStorage("recent", JSON.stringify(uniqueArray.slice(0, 10)));
       changeMusic("next", true);
-    else setCurrentTime(ref.current ? ref.current.currentTime : 0);
+    } else setCurrentTime(ref.current ? ref.current.currentTime : 0);
   };
 
   const playClickHandler = () => {

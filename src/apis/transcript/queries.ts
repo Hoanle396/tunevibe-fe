@@ -1,5 +1,6 @@
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { request } from ".";
-import { IResponseTranscriptMusic } from "./types";
+import { IResponseTranscriptMusic, Result } from "./types";
 
 export const uploadTranscript = (
   file: File
@@ -11,4 +12,26 @@ export const uploadTranscript = (
     url: "/api/predict",
     data: formData,
   });
+};
+
+export const getRecommend = (userId: string): Promise<Result> => {
+  return request({
+    method: "POST",
+    url: "/api/recommend",
+    data: { userId },
+  });
+};
+
+export const useRecommend = (
+  userId?: string,
+  option?: UseQueryOptions<Result, Error>
+) => {
+  return useQuery<Result, Error>(
+    {
+      queryKey: ["recommend", userId],
+      queryFn: () => getRecommend(userId!),
+      enabled: !!userId,
+      ...option
+   },
+  );
 };

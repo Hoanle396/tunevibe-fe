@@ -3,9 +3,11 @@ import { IPFS_URL } from "@/constants/constanst";
 export const cutString = (
   str?: string,
   start: number = 5,
-  end: number = 5
+  end: number = 5,
+  revert: boolean = false
 ): string => {
   if (!str) return "";
+  if (revert) return str.substring(0, start) + "...";
   if (str.length <= start + end) return str;
   return str.substring(0, start) + "..." + str.substring(str.length - end);
 };
@@ -21,11 +23,11 @@ export const getErrorMessage = (error: any) => {
   return "Something went wrong when execute transaction";
 };
 
-export const getStorage = (key: string): string => {
+export const getStorage = (key: string, defaultValue?: string): string => {
   try {
-    return localStorage.getItem(key) ?? "";
+    return localStorage.getItem(key) ?? defaultValue ?? "";
   } catch {
-    return "";
+    return defaultValue ?? "";
   }
 };
 

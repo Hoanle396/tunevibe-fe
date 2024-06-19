@@ -1,12 +1,27 @@
 "use client";
 
 import { GET_MUSIC } from "@/@apollo/queries/music";
+import { useRecommend } from "@/apis/transcript";
 import Index from "@/components/index/Index";
-import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useAuthStore } from "@/store/auth-store";
+import { useQuery as useApollo } from "@apollo/client";
+import { useEffect, useState } from "react";
 const Music = ({}) => {
   const [data, setData] = useState<MusicList | undefined>();
-  const { refetch } = useQuery(GET_MUSIC, {
+  const { id } = useAuthStore();
+
+  const {data:recommend} = useRecommend(String(id), {
+    queryKey: ["recommend", String(id)],
+  });
+
+  useEffect(() => {
+    if (!recommend) return;
+    (async () => {
+      await Promise.allSettled(recommend?.data.map((item) => { }))
+    })()
+  },[recommend])
+
+  const { refetch } = useApollo(GET_MUSIC, {
     onCompleted: (data) => {
       setData(data.getMusics);
     },
@@ -15,12 +30,8 @@ const Music = ({}) => {
       limit: 10,
     },
   });
-  return (
-    <Index
-      trends={data?.data || []}
-      topMusics={data?.data || []}
-    />
-  );
+
+  return <Index trends={data?.data || []} topMusics={data?.data || []} />;
 };
 
 export default Music;

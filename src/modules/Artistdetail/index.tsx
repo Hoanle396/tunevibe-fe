@@ -1,26 +1,46 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import Header from "./components/Header";
 import { useAppStore } from "@/store/app-store";
 import Popular from "./components/Popular";
 import Albums from "./components/Albums";
+import { minidenticon } from "minidenticons";
+import { useQuery } from "@apollo/client";
+import { GET_ARTIST } from "@/@apollo/queries/artist";
+import { useParams } from "next/navigation";
+import dayjs from "dayjs";
 
 const ArtistDetail = () => {
-  const [music] = useAppStore((state) => [state.currentMusic]);
+  const { id } = useParams();
+
+  const { data } = useQuery(GET_ARTIST, {
+    variables: { id },
+  });
+  const svgURI = useMemo(
+    () =>
+      "data:image/svg+xml;utf8," +
+      encodeURIComponent(minidenticon(String(data?.getArtist.name))),
+    [data?.getArtist.name]
+  );
+
   return (
     <div className="pb-28">
-      <Header
-        artist={{
-          id: 121,
-          name: "Son Tung M-TP",
-          avatar: "/images/music/cover-2.webp",
-          musicCount: 63,
-          musics: [],
-          createdAt: "2020-03",
-        }}
-      />
-      <Popular musics={[]} />
-      <Albums />
+      {data?.getArtist && (
+        <Header
+          artist={{
+            id: Number(id),
+            name: data?.getArtist?.name ?? "",
+            avatar: svgURI,
+            musicCount: 63,
+            musics: [],
+            createdAt: dayjs(data?.getArtist?.createdAt)
+              .locale("vn_VN")
+              .format("MM/YYYY"),
+          }}
+        />
+      )}
+      {data?.getArtist && <Popular musics={[]} />}
+      {data?.getArtist && <Albums albums={data?.getArtist?.albums ?? []} />}
     </div>
   );
 };

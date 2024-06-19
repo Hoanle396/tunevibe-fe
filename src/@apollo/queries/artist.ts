@@ -23,6 +23,7 @@ export const GET_ARTISTS = gql`
   {
     getArtists(pagination: {}) {
       data {
+        id
         name
         createdAt
         updatedAt
@@ -45,21 +46,20 @@ export const GET_ARTISTS = gql`
 export const GET_ARTIST = gql`
   query getArtist($id: String!) {
     getArtist(id: $id) {
-      data {
+      id
+      name
+      createdAt
+      updatedAt
+      description
+      user {
+        email
+        wallet
+      }
+      albums {
         name
         createdAt
         updatedAt
-        description
-        user {
-          email
-          wallet
-        }
-      }
-      meta {
-        totalPages
-        limit
-        page
-        totalItems
+        cover
       }
     }
   }
