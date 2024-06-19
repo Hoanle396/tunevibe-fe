@@ -16,3 +16,8 @@ export interface Data {
   prediction: number
   userId: number
 }
+export interface Chat {
+  createdAt: string
+  text: string
+  user: string
+}

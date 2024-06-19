@@ -104,7 +104,8 @@
 }
 
 body {
-  @apply bg-gradient-to-r from-purple-700 to-slate-900 font-montserrat text-white
+  @apply bg-gradient-to-r from-purple-700 to-slate-900 font-montserrat text-white;
+  overflow-x: hidden !important;
 }
 
 .pretitle {
@@ -267,4 +268,8 @@ body {
   color: white;
   font-size: 18px;
   font-weight: bold;
+}
+
+.rcw-widget-container {
+  color: black !important;
 }

@@ -1,6 +1,6 @@
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { request } from ".";
-import { IResponseTranscriptMusic, Result } from "./types";
+import { Chat, IResponseTranscriptMusic, Result } from "./types";
 
 export const uploadTranscript = (
   file: File
@@ -19,6 +19,14 @@ export const getRecommend = (userId: string): Promise<Result> => {
     method: "POST",
     url: "/api/recommend",
     data: { userId },
+  });
+};
+
+export const chat = (msg: string): Promise<Chat> => {
+  return request({
+    method: "POST",
+    url: "/api/chat",
+    data: { msg },
   });
 };
 
