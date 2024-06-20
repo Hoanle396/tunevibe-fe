@@ -100,6 +100,7 @@ export const GET_TRANSACTION = gql`
           cover
           limit
           cover
+          price
           play {
             count
           }

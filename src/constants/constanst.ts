@@ -21,7 +21,7 @@ export {
 } from "@/contracts/MusicTuneVibe.sol/MusicTuneVibe.json";
 
 export enum Transfer {
-  OnSale = "On Sale",
+  OnSale = "OnSale",
   Hold = "Hold",
   Sold = "Sold",
 }

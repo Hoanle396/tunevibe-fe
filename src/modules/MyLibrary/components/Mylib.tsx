@@ -3,20 +3,14 @@ import { useAppStore } from "@/store/app-store";
 
 import MainCard from "@/components/ui/main-card/MainCard";
 
-import Item from "./Item";
-import styles from "./Mylib.module.scss";
 import { Button } from "antd";
 import { RiRefreshLine } from "react-icons/ri";
+import Item from "./Item";
+import styles from "./Mylib.module.scss";
 
 const PLAY_LIST_ID = "my-library";
 
-const Mylib = ({
-  musics,
-  refetch,
-}: {
-  musics: Music[];
-  refetch: () => void;
-}) => {
+const Mylib = ({ musics, refetch }: { musics: any[]; refetch: () => void }) => {
   const [setMusic, setPlayList, playlistId] = useAppStore((state) => [
     state.setMusic,
     state.setPlaylist,
@@ -41,12 +35,14 @@ const Mylib = ({
       }
     >
       <ul className={styles.list}>
-        {musics.map((music, index) => (
+        {musics.map((transaction, index) => (
           <Item
-            key={music.id}
-            musicData={music}
+            key={transaction.id}
+            id={transaction.id}
+            musicData={transaction?.music}
             index={index + 1}
             onMusicClick={playMusicClickHandler}
+            upload
           />
         ))}
       </ul>

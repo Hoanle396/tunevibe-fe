@@ -14,7 +14,7 @@ const MyLibrary = (props: Props) => {
       <div className={styles.content}>
         <Mylib
           refetch={refetch}
-          musics={data?.getTransaction?.data.map((tr: any) => tr.music) ?? []}
+          musics={data?.getTransaction?.data?? []}
         />
       </div>
     </section>

@@ -6,10 +6,15 @@ import FavoriteProvider from "@/components/providers/FavoriteProvider";
 import useAudioDuration from "@/hooks/use-audio-duration";
 import { useAppStore } from "@/store/app-store";
 
+import { CREATE_TRANSACTION } from "@/@apollo/queries/music";
+import { Transfer } from "@/constants/constanst";
+import useToast from "@/hooks/use-toast";
+import { IPFS } from "@/libs/function";
+import { useMutation } from "@apollo/client";
 import { CiCircleMinus } from "react-icons/ci";
 import { MdPauseCircle, MdPlayCircle } from "react-icons/md";
+import { TbUpload } from "react-icons/tb";
 import styles from "./Item.module.scss";
-import { IPFS } from "@/libs/function";
 
 const Item = ({
   musicData,
@@ -17,19 +22,48 @@ const Item = ({
   isDragging,
   inPlaylist,
   onMusicClick,
+  upload = false,
+  id,
 }: {
   musicData: Music;
   index: number;
   isDragging?: boolean;
   inPlaylist?: boolean;
+  upload?: boolean;
+  id: number;
   onMusicClick: (type: "play" | "remove", music: Music) => void;
 }) => {
+  const { toast, context } = useToast();
   const [music, isPlaying, setIsPlaying] = useAppStore((state) => [
     state.currentMusic,
     state.isPlaying,
     state.setPlayingState,
   ]);
+  const [execute] = useMutation(CREATE_TRANSACTION, {
+    onCompleted: () => {
+      toast.success("Resale success");
+    },
+  });
+  const onResale = async () => {
+    if (musicData) {
+      console.log({ musicData });
 
+      try {
+        await execute({
+          variables: {
+            input: {
+              id,
+              musicId: musicData.id,
+              price: musicData.price,
+              status: Transfer.OnSale,
+            },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   const { durationSeconds, formattedDuration, output } = useAudioDuration(
     IPFS(musicData.hash)
   );
@@ -105,7 +139,16 @@ const Item = ({
             <CiCircleMinus />
           </button>
         )}
+        {upload && (
+          <button
+            onClick={onResale}
+            className="bg-transparent p-0 hover:text-[var(--primary-color)]"
+          >
+            <TbUpload />
+          </button>
+        )}
       </div>
+      {context}
     </li>
   );
 };
