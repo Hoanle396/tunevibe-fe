@@ -21,7 +21,7 @@ const menuList = [
   },
   {
     href: "/market",
-    label: "Market",
+    label: "Explore",
     icon: <SiYoutubemusic />,
   },
   {

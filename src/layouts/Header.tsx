@@ -9,7 +9,7 @@ export const MENU = [
     path: "/",
   },
   {
-    name: "Market",
+    name: "Explore",
     path: "/market",
   },
   {
