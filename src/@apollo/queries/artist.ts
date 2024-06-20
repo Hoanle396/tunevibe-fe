@@ -64,3 +64,29 @@ export const GET_ARTIST = gql`
     }
   }
 `;
+export const GET_MUSIC_BY_ARTIST = gql`
+  query getMusicByArtist($id: String!) {
+    getMusicByArtist(id: $id) {
+      id
+      name
+      content
+      hash
+      cover
+      price
+      limit
+      play {
+        count
+      }
+      album {
+        name
+        cover
+        artist {
+          user {
+            wallet
+          }
+          name
+        }
+      }
+    }
+  }
+`;

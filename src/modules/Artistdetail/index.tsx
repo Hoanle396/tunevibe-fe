@@ -6,7 +6,7 @@ import Popular from "./components/Popular";
 import Albums from "./components/Albums";
 import { minidenticon } from "minidenticons";
 import { useQuery } from "@apollo/client";
-import { GET_ARTIST } from "@/@apollo/queries/artist";
+import { GET_ARTIST, GET_MUSIC_BY_ARTIST } from "@/@apollo/queries/artist";
 import { useParams } from "next/navigation";
 import dayjs from "dayjs";
 
@@ -14,6 +14,10 @@ const ArtistDetail = () => {
   const { id } = useParams();
 
   const { data } = useQuery(GET_ARTIST, {
+    variables: { id },
+  });
+
+  const { data: musics } = useQuery(GET_MUSIC_BY_ARTIST, {
     variables: { id },
   });
   const svgURI = useMemo(
@@ -39,7 +43,7 @@ const ArtistDetail = () => {
           }}
         />
       )}
-      {data?.getArtist && <Popular musics={[]} />}
+      {musics?.getMusicByArtist && <Popular musics={musics?.getMusicByArtist ?? []} />}
       {data?.getArtist && <Albums albums={data?.getArtist?.albums ?? []} />}
     </div>
   );

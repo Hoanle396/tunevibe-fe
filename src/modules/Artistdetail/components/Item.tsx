@@ -59,7 +59,7 @@ const Item = ({
         <span className={styles.number}>{number}</span>
         <Image
           className={styles.img}
-          src={IPFS(music.cover)}
+          src={IPFS(musicData.cover)}
           width={90}
           height={70}
           loading="lazy"

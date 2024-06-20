@@ -49,7 +49,7 @@ const PlayerInfo = ({
       const currentMusicShuffleIndex = indexs.findIndex(
         (indexes) =>
           indexes ===
-          playList.findIndex((music) => music.id === currentMusic.id)
+          playList.findIndex((music) => music.id === currentMusic?.id)
       );
       indexs.forEach((sortIndex, index) => {
         const music = playList[sortIndex];
@@ -60,7 +60,7 @@ const PlayerInfo = ({
             <PlayerInfoPlayListItem
               musicData={music}
               className={`${
-                currentMusic && music.id === currentMusic.id ? styles.play : ""
+                currentMusic && music.id === currentMusic?.id ? styles.play : ""
               } ${currentMusicShuffleIndex > index ? styles.passed : ""}`}
             />
           ),
@@ -74,7 +74,7 @@ const PlayerInfo = ({
             <PlayerInfoPlayListItem
               musicData={music}
               className={`${
-                currentMusic && music.id === currentMusic.id ? styles.play : ""
+                currentMusic && music.id === currentMusic?.id ? styles.play : ""
               } ${currentMusicIndex > index ? styles.passed : ""}`}
             />
           ),
