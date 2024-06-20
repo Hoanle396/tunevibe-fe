@@ -1,6 +1,7 @@
 import { CREATE_TRANSACTION } from "@/@apollo/queries/music";
 import { Transfer } from "@/constants/constanst";
 import useDownload from "@/hooks/use-download";
+import { IPFS, download } from "@/libs/function";
 import { FCC } from "@/types";
 import { useMutation } from "@apollo/client";
 import { TbDownload } from "react-icons/tb";
@@ -25,6 +26,7 @@ const DownLoad: FCC<Props> = ({ music }) => {
             },
           },
         });
+        download(IPFS(music.hash), music.name + ".mp3");
       } catch (error) {
         console.log(error);
       }

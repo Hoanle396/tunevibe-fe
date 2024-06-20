@@ -7,16 +7,15 @@ import Mylib from "./components/Mylib";
 type Props = {};
 
 const MyLibrary = (props: Props) => {
-  const [data, setData] = useState<TransactionList | undefined>();
-  const { refetch } = useQuery(GET_TRANSACTION, {
-    onCompleted: (data) => {
-      setData(data.getTransaction);
-    },
-  });
+  // const [data, setData] = useState<TransactionList | undefined>();
+  const { data ,refetch} = useQuery(GET_TRANSACTION);
   return (
     <section className={styles.section}>
       <div className={styles.content}>
-        <Mylib musics={data?.data.map((tr) => tr.music) ?? []} />
+        <Mylib
+          refetch={refetch}
+          musics={data?.getTransaction?.data.map((tr: any) => tr.music) ?? []}
+        />
       </div>
     </section>
   );

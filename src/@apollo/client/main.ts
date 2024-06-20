@@ -21,7 +21,7 @@ export const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   defaultOptions: {
-    query: { errorPolicy: "all" },
+    query: { errorPolicy: "all", pollInterval: 500 },
     mutate: { errorPolicy: "all" },
   },
 });

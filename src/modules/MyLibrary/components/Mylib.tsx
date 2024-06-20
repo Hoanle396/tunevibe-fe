@@ -5,10 +5,18 @@ import MainCard from "@/components/ui/main-card/MainCard";
 
 import Item from "./Item";
 import styles from "./Mylib.module.scss";
+import { Button } from "antd";
+import { RiRefreshLine } from "react-icons/ri";
 
 const PLAY_LIST_ID = "my-library";
 
-const Mylib = ({ musics }: { musics: Music[] }) => {
+const Mylib = ({
+  musics,
+  refetch,
+}: {
+  musics: Music[];
+  refetch: () => void;
+}) => {
   const [setMusic, setPlayList, playlistId] = useAppStore((state) => [
     state.setMusic,
     state.setPlaylist,
@@ -26,7 +34,12 @@ const Mylib = ({ musics }: { musics: Music[] }) => {
   };
 
   return (
-    <MainCard title="My library">
+    <MainCard
+      title="My library"
+      header={
+        <Button icon={<RiRefreshLine />} onClick={() => refetch()}></Button>
+      }
+    >
       <ul className={styles.list}>
         {musics.map((music, index) => (
           <Item

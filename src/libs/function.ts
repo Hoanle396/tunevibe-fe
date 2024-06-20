@@ -1,4 +1,6 @@
 import { IPFS_URL } from "@/constants/constanst";
+import axios from "axios";
+import fileDownload from "js-file-download";
 
 export const cutString = (
   str?: string,
@@ -38,4 +40,11 @@ export const setStorage = (key: string, value: string) => {
 export const IPFS = (hash: string): string => {
   if (IPFS_URL.charAt(IPFS_URL.length - 1) == "/") return IPFS_URL + hash;
   return IPFS_URL + "/" + hash;
+};
+
+export const download = async (url: string, filename: string) => {
+  const { data } = await axios.get(url, {
+    responseType: "blob",
+  });
+  fileDownload(data, filename);
 };

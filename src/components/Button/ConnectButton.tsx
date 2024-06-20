@@ -9,12 +9,14 @@ import { metaMask } from "wagmi/connectors";
 import Button from ".";
 import Avatar from "../Avatar";
 import { useAuthStore } from "@/store/auth-store";
+import { disconnect } from "@wagmi/core";
+import { config } from "@/libs/web3/Web3Provider";
 
 export const ConnectButton = () => {
   const { address: wallet } = useAccount();
   const { connect } = useConnect();
   const { push } = useRouter();
-  const { login } = useAuthStore();
+  const { login, logout } = useAuthStore();
 
   const path = usePathname();
   useQuery(LOGIN_WALLET_QUERY, {
@@ -34,7 +36,10 @@ export const ConnectButton = () => {
   if (wallet) {
     return (
       <Button
-        onClick={() => {}}
+        onClick={() => {
+          disconnect(config);
+          logout();
+        }}
         className="flex items-center gap-2"
         icon={
           <Avatar username={wallet} className="w-6 h-6 border rounded-full" />
