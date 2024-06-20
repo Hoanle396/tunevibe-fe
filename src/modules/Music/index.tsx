@@ -23,7 +23,7 @@ const Music = ({}) => {
     variables: {
       page: 1,
       limit: 10,
-      search: get("search"),
+      search: get("search") != null ? get("search") : undefined,
     },
   });
 
