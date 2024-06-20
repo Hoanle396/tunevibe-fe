@@ -10,16 +10,10 @@ const Music = ({}) => {
   const [data, setData] = useState<MusicList | undefined>();
   const { id } = useAuthStore();
 
-  const {data:recommend} = useRecommend(String(id), {
+  const { data: recommend } = useRecommend(String(id), {
     queryKey: ["recommend", String(id)],
   });
 
-  useEffect(() => {
-    if (!recommend) return;
-    (async () => {
-      await Promise.allSettled(recommend?.data.map((item) => { }))
-    })()
-  },[recommend])
 
   const { refetch } = useApollo(GET_MUSIC, {
     onCompleted: (data) => {
@@ -31,7 +25,13 @@ const Music = ({}) => {
     },
   });
 
-  return <Index trends={data?.data || []} topMusics={data?.data || []} />;
+  return (
+    <Index
+      trends={data?.data || []}
+      topMusics={data?.data || []}
+      recommend={recommend}
+    />
+  );
 };
 
 export default Music;

@@ -4,6 +4,7 @@ export const IPFS_API_KEY = process.env.IPFS_API_KEY || "12345";
 
 export const GRAPHQL_URL =
   process.env.GRAPHQL_URL || "http://localhost:4000/graphql";
+export const API_URL = process.env.API_URL || "http://localhost:4000/";
 
 export const STORAGE_KEY = {
   TOKEN: "token",
@@ -17,7 +18,7 @@ export const NFTAddress = "0x5A03005B5E7690C71358941C60dcA7FC5BdF6309";
 
 export {
   default as Market,
-  default as NFT
+  default as NFT,
 } from "@/contracts/MusicTuneVibe.sol/MusicTuneVibe.json";
 
 export enum Transfer {
