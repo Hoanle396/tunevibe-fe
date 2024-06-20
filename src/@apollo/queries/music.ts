@@ -34,6 +34,34 @@ export const GET_MUSIC = gql`
   }
 `;
 
+export const GET_MUSIC_BY_ID = gql`
+  query getMusic($id: String!) {
+    getMusic(id: $id) {
+      id
+      name
+      content
+      hash
+      cover
+      price
+      limit
+      createdAt
+      play {
+        count
+      }
+      album {
+        name
+        cover
+        artist {
+          user {
+            wallet
+          }
+          name
+        }
+      }
+    }
+  }
+`;
+
 export const CREATE_MUSIC = gql`
   mutation createMusic($input: CreateMusicInput!) {
     create(createMusicInput: $input) {
